@@ -16,7 +16,7 @@ API REST em Flask para leitura, escrita e gerenciamento de instituições de ens
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/CensoEscolarApi.git
+git clone https://github.com/JDavi-Dev/CensoEscolarAPI.git
 cd CensoEscolarApi
 ```
 
