@@ -60,6 +60,7 @@ python3 app.py
 ```
 
 > 🔹 Essa opção inicia a aplicação com `debug=False` (modo de desenvolvimento desativado por padrão).
+
 > 🔹 Para ativar o modo de depuração use app.run(debug=True)
 
 ---
