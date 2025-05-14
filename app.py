@@ -1,8 +1,29 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, g
 import sqlite3
-from models.InstituicaoEnsino import InstituicaoEnsino
+from models.InstituicaoEnsino import InstituicaoEnsino, InstituicaoEnsinoSchema
+from marshmallow import ValidationError
+
+DATABASE = 'censo_escolar.db'
 
 app = Flask(__name__)
+
+def getConnection():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+
+@app.teardown_appcontext
+def closeConnection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+@app.route("/")
+def index():
+    versao = {"versao": "0.0.1"}
+    return jsonify(versao), 200
 
 @app.get("/instituicoes")
 def instituicoesResource():
@@ -13,12 +34,13 @@ def instituicoesResource():
 
     try:
         instituicoesEnsino = []
-        conn = sqlite3.connect('censo_escolar.db')
-        cursor = conn.cursor()
+        cursor = getConnection().cursor()
+        # conn = sqlite3.connect('censo_escolar.db')
+        # cursor = conn.cursor()
 
         # Calcular o offset para a consulta
         offset = (page - 1) * per_page
-
+        
         cursor.execute('SELECT * FROM tb_instituicao LIMIT ? OFFSET ?', (per_page, offset))
         resultSet = cursor.fetchall()
 
@@ -44,8 +66,6 @@ def instituicoesResource():
 
     except sqlite3.Error as e:
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
-    finally:
-        conn.close()
 
     return jsonify(instituicoesEnsino), 200
 
@@ -63,10 +83,12 @@ def validarInstituicao(content):
 @app.post("/instituicoes")
 def instituicaoInsercaoResource():
     print("Post - Instituição")
-    instituicaoJson = request.get_json()
-    isValido = validarInstituicao(instituicaoJson)
-    if isValido:
-        conn = sqlite3.connect('censo_escolar.db')
+    instituicaoEnsinoSchema = InstituicaoEnsinoSchema()
+    instituicaoData = request.get_json()
+    
+    try:
+        instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
+        conn = getConnection()
         cursor = conn.cursor()
         cursor.execute(
             'INSERT INTO tb_instituicao (regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, cod_mesorregiao, microrregiao, cod_microrregiao, entidade, cod_entidade, qt_mat_bas) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
@@ -94,8 +116,11 @@ def instituicaoInsercaoResource():
             instituicaoJson['cod_entidade'], 
             instituicaoJson['qt_mat_bas']
         )
-        conn.close()
         return jsonify(instituicaoEnsino.toDict()), 200
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    except sqlite3.Error as e:
+        return jsonify({"mensagem": "Problema com o banco de dados."}), 500
 
     return jsonify({"mensagem": "Não cadastrado"}), 406
 
@@ -103,7 +128,7 @@ def instituicaoInsercaoResource():
 def instituicaoRemocaoResource(cod_entidade):
     print("Delete - Instituição")
     try:
-        conn = sqlite3.connect('censo_escolar.db')
+        conn = getConnection()
         cursor = conn.cursor()
         cursor.execute('DELETE FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
         conn.commit()
@@ -111,15 +136,13 @@ def instituicaoRemocaoResource(cod_entidade):
             return jsonify({"mensagem": "Instituição não encontrada."}), 404
     except sqlite3.Error as e:
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
-    finally:
-        conn.close()
     return jsonify({"mensagem": "Instituição removida com sucesso."}), 200
 
 @app.route("/instituicoes/<int:cod_entidade>", methods=["PUT"])
 def instituicaoAtualizacaoResource(cod_entidade):
     print("Put - Instituição")
     try:
-        conn = sqlite3.connect('censo_escolar.db')
+        conn = getConnection()
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
         row = cursor.fetchone()
@@ -127,10 +150,9 @@ def instituicaoAtualizacaoResource(cod_entidade):
         if row is None:
             return jsonify({"mensagem": "Instituição não encontrada."}), 404
 
-        instituicaoJson = request.get_json()
-        isValido = validarInstituicao(instituicaoJson)
-        if not isValido:
-            return jsonify({"mensagem": "Dados inválidos."}), 406
+        instituicaoEnsinoSchema = InstituicaoEnsinoSchema()
+        instituicaoData = request.get_json()
+        instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
 
         cursor.execute('UPDATE tb_instituicao SET regiao = ?, cod_regiao = ?, estado = ?, sigla = ?, cod_estado = ?, municipio = ?, cod_municipio = ?, mesorregiao = ?, cod_mesorregiao = ?, microrregiao = ?, cod_microrregiao = ?, entidade = ?, cod_entidade = ?, qt_mat_bas = ? WHERE cod_entidade = ?',
                        (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'], 
@@ -138,18 +160,17 @@ def instituicaoAtualizacaoResource(cod_entidade):
                         instituicaoJson['microrregiao'], instituicaoJson['cod_microrregiao'], instituicaoJson['entidade'], instituicaoJson['cod_entidade'], 
                         instituicaoJson['qt_mat_bas'], cod_entidade))
         conn.commit()
-
+    except ValidationError as err:
+        return jsonify(err.messages), 400
     except sqlite3.Error as e:
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
-    finally:
-        conn.close()
 
     return jsonify({"mensagem": "Instituição atualizada com sucesso."}), 200
 
 @app.route("/instituicoes/<int:cod_entidade>", methods=["GET"])
 def instituicoesByCodEntidadeResource(cod_entidade):
     try:
-        conn = sqlite3.connect('censo_escolar.db')
+        conn = getConnection()
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
         row = cursor.fetchone()
