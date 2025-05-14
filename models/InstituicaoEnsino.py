@@ -1,3 +1,5 @@
+from marshmallow import Schema, fields, validate
+
 class InstituicaoEnsino:
     def __init__(self, id_instituicao, regiao, cod_regiao, estado, sigla, cod_estado,
                  municipio, cod_municipio, mesorregiao, cod_mesorregiao,
@@ -36,3 +38,20 @@ class InstituicaoEnsino:
             'cod_entidade': self.cod_entidade,
             'qt_mat_bas': self.qt_mat_bas
         }
+
+class InstituicaoEnsinoSchema(Schema):
+    id_instituicao = fields.Int()
+    regiao = fields.Str(required=True, validate=validate.Length(min=3, max=20), error_messages={"required": "Nome da Região é obrigatório."})
+    cod_regiao = fields.Str(required=True, validate=validate.Length(min=1, max=1))
+    estado = fields.Str(required=True, validate=validate.Length(min=2, max=50))
+    sigla = fields.Str(required=True, validate=validate.Length(min=2, max=2))
+    cod_estado = fields.Str(required=True, validate=validate.Length(min=2, max=2))
+    municipio = fields.Str(required=True, validate=validate.Length(min=3, max=150))
+    cod_municipio = fields.Str(required=True, validate=validate.Length(min=2, max=7))
+    mesorregiao = fields.Str(required=True, validate=validate.Length(min=3, max=100))
+    cod_mesorregiao = fields.Str(required=True, validate=validate.Length(min=2, max=4))
+    microrregiao = fields.Str(required=True, validate=validate.Length(min=3, max=100))
+    cod_microrregiao = fields.Str(required=True, validate=validate.Length(max=5))
+    entidade = fields.Str(required=True, validate=validate.Length(min=3, max=100))
+    cod_entidade = fields.Int(required=True)
+    qt_mat_bas = fields.Int(required=True)
