@@ -1,0 +1,74 @@
+No codigo do ExtratorUfs use a url: "https://servicodados.ibge.gov.br/api/v1/localidades/regioes/2/estados" que já traz todas as Ufs do nordeste.
+O objeto é assim: {
+    "id": 21,
+    "sigla": "MA",
+    "nome": "Maranhão",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  }
+Quero somente que peguei o id, sigla e nome da Uf.
+
+Agora no ExtratorMunicipio use a url: "https://servicodados.ibge.gov.br/api/v1/localidades/regioes/2/municipios" que traz todos os municipios do nordeste.
+O objeto é assim: {
+    "id": 2100055,
+    "nome": "Açailândia",
+    "microrregiao": {
+      "id": 21009,
+      "nome": "Imperatriz",
+      "mesorregiao": {
+        "id": 2102,
+        "nome": "Oeste Maranhense",
+        "UF": {
+          "id": 21,
+          "sigla": "MA",
+          "nome": "Maranhão",
+          "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+          }
+        }
+      }
+    }
+Quero somente que peguei o id e nome do municipio
+
+No ExtratorMesorregiao use a url: "https://servicodados.ibge.gov.br/api/v1/localidades/mesorregioes" que traz todas mesorregiao. No caso quero que pegue somente as mesorregiao do Nordeste(fazendo alguma lógica/codigo).
+O objeto é assim: {
+    "id": 1101,
+    "nome": "Madeira-Guaporé",
+    "UF": {
+      "id": 11,
+      "sigla": "RO",
+      "nome": "Rondônia",
+      "regiao": {
+        "id": 1,
+        "sigla": "N",
+        "nome": "Norte"
+      }
+    }
+  }
+Quero somente que peguei os campos o id e nome da mesorregiao
+
+Já no ExtratorMicrorregiao use a url: "https://servicodados.ibge.gov.br/api/v1/localidades/microrregioes" que traz todas microrregiao. No caso quero que pegue somente as microrregiao do Nordeste(fazendo alguma lógica/codigo).
+O objeto é assim: {
+    "id": 11001,
+    "nome": "Porto Velho",
+    "mesorregiao": {
+      "id": 1101,
+      "nome": "Madeira-Guaporé",
+      "UF": {
+        "id": 11,
+        "sigla": "RO",
+        "nome": "Rondônia",
+        "regiao": {
+          "id": 1,
+          "sigla": "N",
+          "nome": "Norte"
+        }
+      }
+    }
+  },
+Quero somente que peguei os campos o id e nome da microrregiao
