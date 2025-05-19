@@ -18,3 +18,45 @@ CREATE TABLE tb_instituicao (
     qt_mat_bas INTEGER,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS tb_uf;
+
+CREATE TABLE tb_uf (
+  cod_uf INTEGER PRIMARY KEY,
+  sigla TEXT ,
+  nome TEXT ,
+  regiao TEXT
+);
+
+DROP TABLE IF EXISTS tb_municipio;
+
+CREATE TABLE tb_municipio (
+  cod_municipio INTEGER PRIMARY KEY,
+  nome TEXT ,
+  cod_microrregiao INTEGER,
+  cod_mesorregiao INTEGER,
+  cod_uf INTEGER,
+  FOREIGN KEY (cod_microrregiao) REFERENCES tb_microrregiao(cod_microrregiao),
+  FOREIGN KEY (cod_mesorregiao) REFERENCES tb_mesorregiao(cod_mesorregiao),
+  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf)
+);
+
+DROP TABLE IF EXISTS tb_microrregiao;
+
+CREATE TABLE tb_microrregiao (
+  cod_microrregiao INTEGER PRIMARY KEY,
+  nome TEXT ,
+  cod_mesorregiao INTEGER,
+  cod_uf INTEGER,
+  FOREIGN KEY (cod_mesorregiao) REFERENCES tb_mesorregiao(cod_mesorregiao),
+  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf)
+);
+
+DROP TABLE IF EXISTS tb_mesorregiao;
+
+CREATE TABLE tb_mesorregiao (
+  cod_mesorregiao INTEGER PRIMARY KEY,
+  nome TEXT ,
+  cod_uf INTEGER,
+  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf)
+);
