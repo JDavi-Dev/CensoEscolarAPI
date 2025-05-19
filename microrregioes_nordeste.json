@@ -1,0 +1,3386 @@
+[
+  {
+    "cod_microrregiao": 21001,
+    "nome": "Litoral Ocidental Maranhense",
+    "mesorregiao": {
+      "id": 2101,
+      "nome": "Norte Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21002,
+    "nome": "Aglomeração Urbana de São Luís",
+    "mesorregiao": {
+      "id": 2101,
+      "nome": "Norte Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21003,
+    "nome": "Rosário",
+    "mesorregiao": {
+      "id": 2101,
+      "nome": "Norte Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21004,
+    "nome": "Lençóis Maranhenses",
+    "mesorregiao": {
+      "id": 2101,
+      "nome": "Norte Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21005,
+    "nome": "Baixada Maranhense",
+    "mesorregiao": {
+      "id": 2101,
+      "nome": "Norte Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21006,
+    "nome": "Itapecuru Mirim",
+    "mesorregiao": {
+      "id": 2101,
+      "nome": "Norte Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21007,
+    "nome": "Gurupi",
+    "mesorregiao": {
+      "id": 2102,
+      "nome": "Oeste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21008,
+    "nome": "Pindaré",
+    "mesorregiao": {
+      "id": 2102,
+      "nome": "Oeste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21009,
+    "nome": "Imperatriz",
+    "mesorregiao": {
+      "id": 2102,
+      "nome": "Oeste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21010,
+    "nome": "Médio Mearim",
+    "mesorregiao": {
+      "id": 2103,
+      "nome": "Centro Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21011,
+    "nome": "Alto Mearim e Grajaú",
+    "mesorregiao": {
+      "id": 2103,
+      "nome": "Centro Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21012,
+    "nome": "Presidente Dutra",
+    "mesorregiao": {
+      "id": 2103,
+      "nome": "Centro Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21013,
+    "nome": "Baixo Parnaíba Maranhense",
+    "mesorregiao": {
+      "id": 2104,
+      "nome": "Leste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21014,
+    "nome": "Chapadinha",
+    "mesorregiao": {
+      "id": 2104,
+      "nome": "Leste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21015,
+    "nome": "Codó",
+    "mesorregiao": {
+      "id": 2104,
+      "nome": "Leste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21016,
+    "nome": "Coelho Neto",
+    "mesorregiao": {
+      "id": 2104,
+      "nome": "Leste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21017,
+    "nome": "Caxias",
+    "mesorregiao": {
+      "id": 2104,
+      "nome": "Leste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21018,
+    "nome": "Chapadas do Alto Itapecuru",
+    "mesorregiao": {
+      "id": 2104,
+      "nome": "Leste Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21019,
+    "nome": "Porto Franco",
+    "mesorregiao": {
+      "id": 2105,
+      "nome": "Sul Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21020,
+    "nome": "Gerais de Balsas",
+    "mesorregiao": {
+      "id": 2105,
+      "nome": "Sul Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 21021,
+    "nome": "Chapadas das Mangabeiras",
+    "mesorregiao": {
+      "id": 2105,
+      "nome": "Sul Maranhense",
+      "UF": {
+        "id": 21,
+        "sigla": "MA",
+        "nome": "Maranhão",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22001,
+    "nome": "Baixo Parnaíba Piauiense",
+    "mesorregiao": {
+      "id": 2201,
+      "nome": "Norte Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22002,
+    "nome": "Litoral Piauiense",
+    "mesorregiao": {
+      "id": 2201,
+      "nome": "Norte Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22003,
+    "nome": "Teresina",
+    "mesorregiao": {
+      "id": 2202,
+      "nome": "Centro-Norte Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22004,
+    "nome": "Campo Maior",
+    "mesorregiao": {
+      "id": 2202,
+      "nome": "Centro-Norte Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22005,
+    "nome": "Médio Parnaíba Piauiense",
+    "mesorregiao": {
+      "id": 2202,
+      "nome": "Centro-Norte Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22006,
+    "nome": "Valença do Piauí",
+    "mesorregiao": {
+      "id": 2202,
+      "nome": "Centro-Norte Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22007,
+    "nome": "Alto Parnaíba Piauiense",
+    "mesorregiao": {
+      "id": 2203,
+      "nome": "Sudoeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22008,
+    "nome": "Bertolínia",
+    "mesorregiao": {
+      "id": 2203,
+      "nome": "Sudoeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22009,
+    "nome": "Floriano",
+    "mesorregiao": {
+      "id": 2203,
+      "nome": "Sudoeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22010,
+    "nome": "Alto Médio Gurguéia",
+    "mesorregiao": {
+      "id": 2203,
+      "nome": "Sudoeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22011,
+    "nome": "São Raimundo Nonato",
+    "mesorregiao": {
+      "id": 2203,
+      "nome": "Sudoeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22012,
+    "nome": "Chapadas do Extremo Sul Piauiense",
+    "mesorregiao": {
+      "id": 2203,
+      "nome": "Sudoeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22013,
+    "nome": "Picos",
+    "mesorregiao": {
+      "id": 2204,
+      "nome": "Sudeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22014,
+    "nome": "Pio IX",
+    "mesorregiao": {
+      "id": 2204,
+      "nome": "Sudeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 22015,
+    "nome": "Alto Médio Canindé",
+    "mesorregiao": {
+      "id": 2204,
+      "nome": "Sudeste Piauiense",
+      "UF": {
+        "id": 22,
+        "sigla": "PI",
+        "nome": "Piauí",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23001,
+    "nome": "Litoral de Camocim e Acaraú",
+    "mesorregiao": {
+      "id": 2301,
+      "nome": "Noroeste Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23002,
+    "nome": "Ibiapaba",
+    "mesorregiao": {
+      "id": 2301,
+      "nome": "Noroeste Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23003,
+    "nome": "Coreaú",
+    "mesorregiao": {
+      "id": 2301,
+      "nome": "Noroeste Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23004,
+    "nome": "Meruoca",
+    "mesorregiao": {
+      "id": 2301,
+      "nome": "Noroeste Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23005,
+    "nome": "Sobral",
+    "mesorregiao": {
+      "id": 2301,
+      "nome": "Noroeste Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23006,
+    "nome": "Ipu",
+    "mesorregiao": {
+      "id": 2301,
+      "nome": "Noroeste Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23007,
+    "nome": "Santa Quitéria",
+    "mesorregiao": {
+      "id": 2301,
+      "nome": "Noroeste Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23008,
+    "nome": "Itapipoca",
+    "mesorregiao": {
+      "id": 2302,
+      "nome": "Norte Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23009,
+    "nome": "Baixo Curu",
+    "mesorregiao": {
+      "id": 2302,
+      "nome": "Norte Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23010,
+    "nome": "Uruburetama",
+    "mesorregiao": {
+      "id": 2302,
+      "nome": "Norte Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23011,
+    "nome": "Médio Curu",
+    "mesorregiao": {
+      "id": 2302,
+      "nome": "Norte Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23012,
+    "nome": "Canindé",
+    "mesorregiao": {
+      "id": 2302,
+      "nome": "Norte Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23013,
+    "nome": "Baturité",
+    "mesorregiao": {
+      "id": 2302,
+      "nome": "Norte Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23014,
+    "nome": "Chorozinho",
+    "mesorregiao": {
+      "id": 2302,
+      "nome": "Norte Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23015,
+    "nome": "Cascavel",
+    "mesorregiao": {
+      "id": 2302,
+      "nome": "Norte Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23016,
+    "nome": "Fortaleza",
+    "mesorregiao": {
+      "id": 2303,
+      "nome": "Metropolitana de Fortaleza",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23017,
+    "nome": "Pacajus",
+    "mesorregiao": {
+      "id": 2303,
+      "nome": "Metropolitana de Fortaleza",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23018,
+    "nome": "Sertão de Cratéus",
+    "mesorregiao": {
+      "id": 2304,
+      "nome": "Sertões Cearenses",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23019,
+    "nome": "Sertão de Quixeramobim",
+    "mesorregiao": {
+      "id": 2304,
+      "nome": "Sertões Cearenses",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23020,
+    "nome": "Sertão de Inhamuns",
+    "mesorregiao": {
+      "id": 2304,
+      "nome": "Sertões Cearenses",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23021,
+    "nome": "Sertão de Senador Pompeu",
+    "mesorregiao": {
+      "id": 2304,
+      "nome": "Sertões Cearenses",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23022,
+    "nome": "Litoral de Aracati",
+    "mesorregiao": {
+      "id": 2305,
+      "nome": "Jaguaribe",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23023,
+    "nome": "Baixo Jaguaribe",
+    "mesorregiao": {
+      "id": 2305,
+      "nome": "Jaguaribe",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23024,
+    "nome": "Médio Jaguaribe",
+    "mesorregiao": {
+      "id": 2305,
+      "nome": "Jaguaribe",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23025,
+    "nome": "Serra do Pereiro",
+    "mesorregiao": {
+      "id": 2305,
+      "nome": "Jaguaribe",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23026,
+    "nome": "Iguatu",
+    "mesorregiao": {
+      "id": 2306,
+      "nome": "Centro-Sul Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23027,
+    "nome": "Várzea Alegre",
+    "mesorregiao": {
+      "id": 2306,
+      "nome": "Centro-Sul Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23028,
+    "nome": "Lavras da Mangabeira",
+    "mesorregiao": {
+      "id": 2306,
+      "nome": "Centro-Sul Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23029,
+    "nome": "Chapada do Araripe",
+    "mesorregiao": {
+      "id": 2307,
+      "nome": "Sul Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23030,
+    "nome": "Caririaçu",
+    "mesorregiao": {
+      "id": 2307,
+      "nome": "Sul Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23031,
+    "nome": "Barro",
+    "mesorregiao": {
+      "id": 2307,
+      "nome": "Sul Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23032,
+    "nome": "Cariri",
+    "mesorregiao": {
+      "id": 2307,
+      "nome": "Sul Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 23033,
+    "nome": "Brejo Santo",
+    "mesorregiao": {
+      "id": 2307,
+      "nome": "Sul Cearense",
+      "UF": {
+        "id": 23,
+        "sigla": "CE",
+        "nome": "Ceará",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24001,
+    "nome": "Mossoró",
+    "mesorregiao": {
+      "id": 2401,
+      "nome": "Oeste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24002,
+    "nome": "Chapada do Apodi",
+    "mesorregiao": {
+      "id": 2401,
+      "nome": "Oeste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24003,
+    "nome": "Médio Oeste",
+    "mesorregiao": {
+      "id": 2401,
+      "nome": "Oeste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24004,
+    "nome": "Vale do Açu",
+    "mesorregiao": {
+      "id": 2401,
+      "nome": "Oeste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24005,
+    "nome": "Serra de São Miguel",
+    "mesorregiao": {
+      "id": 2401,
+      "nome": "Oeste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24006,
+    "nome": "Pau dos Ferros",
+    "mesorregiao": {
+      "id": 2401,
+      "nome": "Oeste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24007,
+    "nome": "Umarizal",
+    "mesorregiao": {
+      "id": 2401,
+      "nome": "Oeste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24008,
+    "nome": "Macau",
+    "mesorregiao": {
+      "id": 2402,
+      "nome": "Central Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24009,
+    "nome": "Angicos",
+    "mesorregiao": {
+      "id": 2402,
+      "nome": "Central Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24010,
+    "nome": "Serra de Santana",
+    "mesorregiao": {
+      "id": 2402,
+      "nome": "Central Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24011,
+    "nome": "Seridó Ocidental",
+    "mesorregiao": {
+      "id": 2402,
+      "nome": "Central Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24012,
+    "nome": "Seridó Oriental",
+    "mesorregiao": {
+      "id": 2402,
+      "nome": "Central Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24013,
+    "nome": "Baixa Verde",
+    "mesorregiao": {
+      "id": 2403,
+      "nome": "Agreste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24014,
+    "nome": "Borborema Potiguar",
+    "mesorregiao": {
+      "id": 2403,
+      "nome": "Agreste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24015,
+    "nome": "Agreste Potiguar",
+    "mesorregiao": {
+      "id": 2403,
+      "nome": "Agreste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24016,
+    "nome": "Litoral Nordeste",
+    "mesorregiao": {
+      "id": 2404,
+      "nome": "Leste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24017,
+    "nome": "Macaíba",
+    "mesorregiao": {
+      "id": 2404,
+      "nome": "Leste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24018,
+    "nome": "Natal",
+    "mesorregiao": {
+      "id": 2404,
+      "nome": "Leste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 24019,
+    "nome": "Litoral Sul",
+    "mesorregiao": {
+      "id": 2404,
+      "nome": "Leste Potiguar",
+      "UF": {
+        "id": 24,
+        "sigla": "RN",
+        "nome": "Rio Grande do Norte",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25001,
+    "nome": "Catolé do Rocha",
+    "mesorregiao": {
+      "id": 2501,
+      "nome": "Sertão Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25002,
+    "nome": "Cajazeiras",
+    "mesorregiao": {
+      "id": 2501,
+      "nome": "Sertão Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25003,
+    "nome": "Sousa",
+    "mesorregiao": {
+      "id": 2501,
+      "nome": "Sertão Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25004,
+    "nome": "Patos",
+    "mesorregiao": {
+      "id": 2501,
+      "nome": "Sertão Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25005,
+    "nome": "Piancó",
+    "mesorregiao": {
+      "id": 2501,
+      "nome": "Sertão Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25006,
+    "nome": "Itaporanga",
+    "mesorregiao": {
+      "id": 2501,
+      "nome": "Sertão Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25007,
+    "nome": "Serra do Teixeira",
+    "mesorregiao": {
+      "id": 2501,
+      "nome": "Sertão Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25008,
+    "nome": "Seridó Ocidental Paraibano",
+    "mesorregiao": {
+      "id": 2502,
+      "nome": "Borborema",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25009,
+    "nome": "Seridó Oriental Paraibano",
+    "mesorregiao": {
+      "id": 2502,
+      "nome": "Borborema",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25010,
+    "nome": "Cariri Ocidental",
+    "mesorregiao": {
+      "id": 2502,
+      "nome": "Borborema",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25011,
+    "nome": "Cariri Oriental",
+    "mesorregiao": {
+      "id": 2502,
+      "nome": "Borborema",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25012,
+    "nome": "Curimataú Ocidental",
+    "mesorregiao": {
+      "id": 2503,
+      "nome": "Agreste Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25013,
+    "nome": "Curimataú Oriental",
+    "mesorregiao": {
+      "id": 2503,
+      "nome": "Agreste Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25014,
+    "nome": "Esperança",
+    "mesorregiao": {
+      "id": 2503,
+      "nome": "Agreste Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25015,
+    "nome": "Brejo Paraibano",
+    "mesorregiao": {
+      "id": 2503,
+      "nome": "Agreste Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25016,
+    "nome": "Guarabira",
+    "mesorregiao": {
+      "id": 2503,
+      "nome": "Agreste Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25017,
+    "nome": "Campina Grande",
+    "mesorregiao": {
+      "id": 2503,
+      "nome": "Agreste Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25018,
+    "nome": "Itabaiana",
+    "mesorregiao": {
+      "id": 2503,
+      "nome": "Agreste Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25019,
+    "nome": "Umbuzeiro",
+    "mesorregiao": {
+      "id": 2503,
+      "nome": "Agreste Paraibano",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25020,
+    "nome": "Litoral Norte",
+    "mesorregiao": {
+      "id": 2504,
+      "nome": "Mata Paraibana",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25021,
+    "nome": "Sapé",
+    "mesorregiao": {
+      "id": 2504,
+      "nome": "Mata Paraibana",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25022,
+    "nome": "João Pessoa",
+    "mesorregiao": {
+      "id": 2504,
+      "nome": "Mata Paraibana",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 25023,
+    "nome": "Litoral Sul",
+    "mesorregiao": {
+      "id": 2504,
+      "nome": "Mata Paraibana",
+      "UF": {
+        "id": 25,
+        "sigla": "PB",
+        "nome": "Paraíba",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26001,
+    "nome": "Araripina",
+    "mesorregiao": {
+      "id": 2601,
+      "nome": "Sertão Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26002,
+    "nome": "Salgueiro",
+    "mesorregiao": {
+      "id": 2601,
+      "nome": "Sertão Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26003,
+    "nome": "Pajeú",
+    "mesorregiao": {
+      "id": 2601,
+      "nome": "Sertão Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26004,
+    "nome": "Sertão do Moxotó",
+    "mesorregiao": {
+      "id": 2601,
+      "nome": "Sertão Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26005,
+    "nome": "Petrolina",
+    "mesorregiao": {
+      "id": 2602,
+      "nome": "São Francisco Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26006,
+    "nome": "Itaparica",
+    "mesorregiao": {
+      "id": 2602,
+      "nome": "São Francisco Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26007,
+    "nome": "Vale do Ipanema",
+    "mesorregiao": {
+      "id": 2603,
+      "nome": "Agreste Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26008,
+    "nome": "Vale do Ipojuca",
+    "mesorregiao": {
+      "id": 2603,
+      "nome": "Agreste Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26009,
+    "nome": "Alto Capibaribe",
+    "mesorregiao": {
+      "id": 2603,
+      "nome": "Agreste Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26010,
+    "nome": "Médio Capibaribe",
+    "mesorregiao": {
+      "id": 2603,
+      "nome": "Agreste Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26011,
+    "nome": "Garanhuns",
+    "mesorregiao": {
+      "id": 2603,
+      "nome": "Agreste Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26012,
+    "nome": "Brejo Pernambucano",
+    "mesorregiao": {
+      "id": 2603,
+      "nome": "Agreste Pernambucano",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26013,
+    "nome": "Mata Setentrional Pernambucana",
+    "mesorregiao": {
+      "id": 2604,
+      "nome": "Mata Pernambucana",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26014,
+    "nome": "Vitória de Santo Antão",
+    "mesorregiao": {
+      "id": 2604,
+      "nome": "Mata Pernambucana",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26015,
+    "nome": "Mata Meridional Pernambucana",
+    "mesorregiao": {
+      "id": 2604,
+      "nome": "Mata Pernambucana",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26016,
+    "nome": "Itamaracá",
+    "mesorregiao": {
+      "id": 2605,
+      "nome": "Metropolitana de Recife",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26017,
+    "nome": "Recife",
+    "mesorregiao": {
+      "id": 2605,
+      "nome": "Metropolitana de Recife",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26018,
+    "nome": "Suape",
+    "mesorregiao": {
+      "id": 2605,
+      "nome": "Metropolitana de Recife",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 26019,
+    "nome": "Fernando de Noronha",
+    "mesorregiao": {
+      "id": 2605,
+      "nome": "Metropolitana de Recife",
+      "UF": {
+        "id": 26,
+        "sigla": "PE",
+        "nome": "Pernambuco",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27001,
+    "nome": "Serrana do Sertão Alagoano",
+    "mesorregiao": {
+      "id": 2701,
+      "nome": "Sertão Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27002,
+    "nome": "Alagoana do Sertão do São Francisco",
+    "mesorregiao": {
+      "id": 2701,
+      "nome": "Sertão Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27003,
+    "nome": "Santana do Ipanema",
+    "mesorregiao": {
+      "id": 2701,
+      "nome": "Sertão Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27004,
+    "nome": "Batalha",
+    "mesorregiao": {
+      "id": 2701,
+      "nome": "Sertão Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27005,
+    "nome": "Palmeira dos Índios",
+    "mesorregiao": {
+      "id": 2702,
+      "nome": "Agreste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27006,
+    "nome": "Arapiraca",
+    "mesorregiao": {
+      "id": 2702,
+      "nome": "Agreste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27007,
+    "nome": "Traipu",
+    "mesorregiao": {
+      "id": 2702,
+      "nome": "Agreste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27008,
+    "nome": "Serrana dos Quilombos",
+    "mesorregiao": {
+      "id": 2703,
+      "nome": "Leste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27009,
+    "nome": "Mata Alagoana",
+    "mesorregiao": {
+      "id": 2703,
+      "nome": "Leste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27010,
+    "nome": "Litoral Norte Alagoano",
+    "mesorregiao": {
+      "id": 2703,
+      "nome": "Leste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27011,
+    "nome": "Maceió",
+    "mesorregiao": {
+      "id": 2703,
+      "nome": "Leste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27012,
+    "nome": "São Miguel dos Campos",
+    "mesorregiao": {
+      "id": 2703,
+      "nome": "Leste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 27013,
+    "nome": "Penedo",
+    "mesorregiao": {
+      "id": 2703,
+      "nome": "Leste Alagoano",
+      "UF": {
+        "id": 27,
+        "sigla": "AL",
+        "nome": "Alagoas",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28001,
+    "nome": "Sergipana do Sertão do São Francisco",
+    "mesorregiao": {
+      "id": 2801,
+      "nome": "Sertão Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28002,
+    "nome": "Carira",
+    "mesorregiao": {
+      "id": 2801,
+      "nome": "Sertão Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28003,
+    "nome": "Nossa Senhora das Dores",
+    "mesorregiao": {
+      "id": 2802,
+      "nome": "Agreste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28004,
+    "nome": "Agreste de Itabaiana",
+    "mesorregiao": {
+      "id": 2802,
+      "nome": "Agreste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28005,
+    "nome": "Tobias Barreto",
+    "mesorregiao": {
+      "id": 2802,
+      "nome": "Agreste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28006,
+    "nome": "Agreste de Lagarto",
+    "mesorregiao": {
+      "id": 2802,
+      "nome": "Agreste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28007,
+    "nome": "Propriá",
+    "mesorregiao": {
+      "id": 2803,
+      "nome": "Leste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28008,
+    "nome": "Cotinguiba",
+    "mesorregiao": {
+      "id": 2803,
+      "nome": "Leste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28009,
+    "nome": "Japaratuba",
+    "mesorregiao": {
+      "id": 2803,
+      "nome": "Leste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28010,
+    "nome": "Baixo Cotinguiba",
+    "mesorregiao": {
+      "id": 2803,
+      "nome": "Leste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28011,
+    "nome": "Aracaju",
+    "mesorregiao": {
+      "id": 2803,
+      "nome": "Leste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28012,
+    "nome": "Boquim",
+    "mesorregiao": {
+      "id": 2803,
+      "nome": "Leste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 28013,
+    "nome": "Estância",
+    "mesorregiao": {
+      "id": 2803,
+      "nome": "Leste Sergipano",
+      "UF": {
+        "id": 28,
+        "sigla": "SE",
+        "nome": "Sergipe",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29001,
+    "nome": "Barreiras",
+    "mesorregiao": {
+      "id": 2901,
+      "nome": "Extremo Oeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29002,
+    "nome": "Cotegipe",
+    "mesorregiao": {
+      "id": 2901,
+      "nome": "Extremo Oeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29003,
+    "nome": "Santa Maria da Vitória",
+    "mesorregiao": {
+      "id": 2901,
+      "nome": "Extremo Oeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29004,
+    "nome": "Juazeiro",
+    "mesorregiao": {
+      "id": 2902,
+      "nome": "Vale São-Franciscano da Bahia",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29005,
+    "nome": "Paulo Afonso",
+    "mesorregiao": {
+      "id": 2902,
+      "nome": "Vale São-Franciscano da Bahia",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29006,
+    "nome": "Barra",
+    "mesorregiao": {
+      "id": 2902,
+      "nome": "Vale São-Franciscano da Bahia",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29007,
+    "nome": "Bom Jesus da Lapa",
+    "mesorregiao": {
+      "id": 2902,
+      "nome": "Vale São-Franciscano da Bahia",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29008,
+    "nome": "Senhor do Bonfim",
+    "mesorregiao": {
+      "id": 2903,
+      "nome": "Centro Norte Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29009,
+    "nome": "Irecê",
+    "mesorregiao": {
+      "id": 2903,
+      "nome": "Centro Norte Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29010,
+    "nome": "Jacobina",
+    "mesorregiao": {
+      "id": 2903,
+      "nome": "Centro Norte Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29011,
+    "nome": "Itaberaba",
+    "mesorregiao": {
+      "id": 2903,
+      "nome": "Centro Norte Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29012,
+    "nome": "Feira de Santana",
+    "mesorregiao": {
+      "id": 2903,
+      "nome": "Centro Norte Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29013,
+    "nome": "Jeremoabo",
+    "mesorregiao": {
+      "id": 2904,
+      "nome": "Nordeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29014,
+    "nome": "Euclides da Cunha",
+    "mesorregiao": {
+      "id": 2904,
+      "nome": "Nordeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29015,
+    "nome": "Ribeira do Pombal",
+    "mesorregiao": {
+      "id": 2904,
+      "nome": "Nordeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29016,
+    "nome": "Serrinha",
+    "mesorregiao": {
+      "id": 2904,
+      "nome": "Nordeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29017,
+    "nome": "Alagoinhas",
+    "mesorregiao": {
+      "id": 2904,
+      "nome": "Nordeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29018,
+    "nome": "Entre Rios",
+    "mesorregiao": {
+      "id": 2904,
+      "nome": "Nordeste Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29019,
+    "nome": "Catu",
+    "mesorregiao": {
+      "id": 2905,
+      "nome": "Metropolitana de Salvador",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29020,
+    "nome": "Santo Antônio de Jesus",
+    "mesorregiao": {
+      "id": 2905,
+      "nome": "Metropolitana de Salvador",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29021,
+    "nome": "Salvador",
+    "mesorregiao": {
+      "id": 2905,
+      "nome": "Metropolitana de Salvador",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29022,
+    "nome": "Boquira",
+    "mesorregiao": {
+      "id": 2906,
+      "nome": "Centro Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29023,
+    "nome": "Seabra",
+    "mesorregiao": {
+      "id": 2906,
+      "nome": "Centro Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29024,
+    "nome": "Jequié",
+    "mesorregiao": {
+      "id": 2906,
+      "nome": "Centro Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29025,
+    "nome": "Livramento do Brumado",
+    "mesorregiao": {
+      "id": 2906,
+      "nome": "Centro Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29026,
+    "nome": "Guanambi",
+    "mesorregiao": {
+      "id": 2906,
+      "nome": "Centro Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29027,
+    "nome": "Brumado",
+    "mesorregiao": {
+      "id": 2906,
+      "nome": "Centro Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29028,
+    "nome": "Vitória da Conquista",
+    "mesorregiao": {
+      "id": 2906,
+      "nome": "Centro Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29029,
+    "nome": "Itapetinga",
+    "mesorregiao": {
+      "id": 2906,
+      "nome": "Centro Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29030,
+    "nome": "Valença",
+    "mesorregiao": {
+      "id": 2907,
+      "nome": "Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29031,
+    "nome": "Ilhéus-Itabuna",
+    "mesorregiao": {
+      "id": 2907,
+      "nome": "Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  },
+  {
+    "cod_microrregiao": 29032,
+    "nome": "Porto Seguro",
+    "mesorregiao": {
+      "id": 2907,
+      "nome": "Sul Baiano",
+      "UF": {
+        "id": 29,
+        "sigla": "BA",
+        "nome": "Bahia",
+        "regiao": {
+          "id": 2,
+          "sigla": "NE",
+          "nome": "Nordeste"
+        }
+      }
+    }
+  }
+]

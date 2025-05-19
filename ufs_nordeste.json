@@ -1,0 +1,92 @@
+[
+  {
+    "cod_uf": 21,
+    "sigla": "MA",
+    "nome": "Maranhão",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  },
+  {
+    "cod_uf": 22,
+    "sigla": "PI",
+    "nome": "Piauí",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  },
+  {
+    "cod_uf": 23,
+    "sigla": "CE",
+    "nome": "Ceará",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  },
+  {
+    "cod_uf": 24,
+    "sigla": "RN",
+    "nome": "Rio Grande do Norte",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  },
+  {
+    "cod_uf": 25,
+    "sigla": "PB",
+    "nome": "Paraíba",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  },
+  {
+    "cod_uf": 26,
+    "sigla": "PE",
+    "nome": "Pernambuco",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  },
+  {
+    "cod_uf": 27,
+    "sigla": "AL",
+    "nome": "Alagoas",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  },
+  {
+    "cod_uf": 28,
+    "sigla": "SE",
+    "nome": "Sergipe",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  },
+  {
+    "cod_uf": 29,
+    "sigla": "BA",
+    "nome": "Bahia",
+    "regiao": {
+      "id": 2,
+      "sigla": "NE",
+      "nome": "Nordeste"
+    }
+  }
+]

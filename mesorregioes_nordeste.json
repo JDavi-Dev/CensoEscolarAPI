@@ -1,0 +1,590 @@
+[
+  {
+    "cod_mesorregiao": 2101,
+    "nome": "Norte Maranhense",
+    "UF": {
+      "id": 21,
+      "sigla": "MA",
+      "nome": "Maranhão",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2102,
+    "nome": "Oeste Maranhense",
+    "UF": {
+      "id": 21,
+      "sigla": "MA",
+      "nome": "Maranhão",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2103,
+    "nome": "Centro Maranhense",
+    "UF": {
+      "id": 21,
+      "sigla": "MA",
+      "nome": "Maranhão",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2104,
+    "nome": "Leste Maranhense",
+    "UF": {
+      "id": 21,
+      "sigla": "MA",
+      "nome": "Maranhão",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2105,
+    "nome": "Sul Maranhense",
+    "UF": {
+      "id": 21,
+      "sigla": "MA",
+      "nome": "Maranhão",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2201,
+    "nome": "Norte Piauiense",
+    "UF": {
+      "id": 22,
+      "sigla": "PI",
+      "nome": "Piauí",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2202,
+    "nome": "Centro-Norte Piauiense",
+    "UF": {
+      "id": 22,
+      "sigla": "PI",
+      "nome": "Piauí",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2203,
+    "nome": "Sudoeste Piauiense",
+    "UF": {
+      "id": 22,
+      "sigla": "PI",
+      "nome": "Piauí",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2204,
+    "nome": "Sudeste Piauiense",
+    "UF": {
+      "id": 22,
+      "sigla": "PI",
+      "nome": "Piauí",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2301,
+    "nome": "Noroeste Cearense",
+    "UF": {
+      "id": 23,
+      "sigla": "CE",
+      "nome": "Ceará",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2302,
+    "nome": "Norte Cearense",
+    "UF": {
+      "id": 23,
+      "sigla": "CE",
+      "nome": "Ceará",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2303,
+    "nome": "Metropolitana de Fortaleza",
+    "UF": {
+      "id": 23,
+      "sigla": "CE",
+      "nome": "Ceará",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2304,
+    "nome": "Sertões Cearenses",
+    "UF": {
+      "id": 23,
+      "sigla": "CE",
+      "nome": "Ceará",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2305,
+    "nome": "Jaguaribe",
+    "UF": {
+      "id": 23,
+      "sigla": "CE",
+      "nome": "Ceará",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2306,
+    "nome": "Centro-Sul Cearense",
+    "UF": {
+      "id": 23,
+      "sigla": "CE",
+      "nome": "Ceará",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2307,
+    "nome": "Sul Cearense",
+    "UF": {
+      "id": 23,
+      "sigla": "CE",
+      "nome": "Ceará",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2401,
+    "nome": "Oeste Potiguar",
+    "UF": {
+      "id": 24,
+      "sigla": "RN",
+      "nome": "Rio Grande do Norte",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2402,
+    "nome": "Central Potiguar",
+    "UF": {
+      "id": 24,
+      "sigla": "RN",
+      "nome": "Rio Grande do Norte",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2403,
+    "nome": "Agreste Potiguar",
+    "UF": {
+      "id": 24,
+      "sigla": "RN",
+      "nome": "Rio Grande do Norte",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2404,
+    "nome": "Leste Potiguar",
+    "UF": {
+      "id": 24,
+      "sigla": "RN",
+      "nome": "Rio Grande do Norte",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2501,
+    "nome": "Sertão Paraibano",
+    "UF": {
+      "id": 25,
+      "sigla": "PB",
+      "nome": "Paraíba",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2502,
+    "nome": "Borborema",
+    "UF": {
+      "id": 25,
+      "sigla": "PB",
+      "nome": "Paraíba",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2503,
+    "nome": "Agreste Paraibano",
+    "UF": {
+      "id": 25,
+      "sigla": "PB",
+      "nome": "Paraíba",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2504,
+    "nome": "Mata Paraibana",
+    "UF": {
+      "id": 25,
+      "sigla": "PB",
+      "nome": "Paraíba",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2601,
+    "nome": "Sertão Pernambucano",
+    "UF": {
+      "id": 26,
+      "sigla": "PE",
+      "nome": "Pernambuco",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2602,
+    "nome": "São Francisco Pernambucano",
+    "UF": {
+      "id": 26,
+      "sigla": "PE",
+      "nome": "Pernambuco",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2603,
+    "nome": "Agreste Pernambucano",
+    "UF": {
+      "id": 26,
+      "sigla": "PE",
+      "nome": "Pernambuco",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2604,
+    "nome": "Mata Pernambucana",
+    "UF": {
+      "id": 26,
+      "sigla": "PE",
+      "nome": "Pernambuco",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2605,
+    "nome": "Metropolitana de Recife",
+    "UF": {
+      "id": 26,
+      "sigla": "PE",
+      "nome": "Pernambuco",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2701,
+    "nome": "Sertão Alagoano",
+    "UF": {
+      "id": 27,
+      "sigla": "AL",
+      "nome": "Alagoas",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2702,
+    "nome": "Agreste Alagoano",
+    "UF": {
+      "id": 27,
+      "sigla": "AL",
+      "nome": "Alagoas",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2703,
+    "nome": "Leste Alagoano",
+    "UF": {
+      "id": 27,
+      "sigla": "AL",
+      "nome": "Alagoas",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2801,
+    "nome": "Sertão Sergipano",
+    "UF": {
+      "id": 28,
+      "sigla": "SE",
+      "nome": "Sergipe",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2802,
+    "nome": "Agreste Sergipano",
+    "UF": {
+      "id": 28,
+      "sigla": "SE",
+      "nome": "Sergipe",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2803,
+    "nome": "Leste Sergipano",
+    "UF": {
+      "id": 28,
+      "sigla": "SE",
+      "nome": "Sergipe",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2901,
+    "nome": "Extremo Oeste Baiano",
+    "UF": {
+      "id": 29,
+      "sigla": "BA",
+      "nome": "Bahia",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2902,
+    "nome": "Vale São-Franciscano da Bahia",
+    "UF": {
+      "id": 29,
+      "sigla": "BA",
+      "nome": "Bahia",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2903,
+    "nome": "Centro Norte Baiano",
+    "UF": {
+      "id": 29,
+      "sigla": "BA",
+      "nome": "Bahia",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2904,
+    "nome": "Nordeste Baiano",
+    "UF": {
+      "id": 29,
+      "sigla": "BA",
+      "nome": "Bahia",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2905,
+    "nome": "Metropolitana de Salvador",
+    "UF": {
+      "id": 29,
+      "sigla": "BA",
+      "nome": "Bahia",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2906,
+    "nome": "Centro Sul Baiano",
+    "UF": {
+      "id": 29,
+      "sigla": "BA",
+      "nome": "Bahia",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  },
+  {
+    "cod_mesorregiao": 2907,
+    "nome": "Sul Baiano",
+    "UF": {
+      "id": 29,
+      "sigla": "BA",
+      "nome": "Bahia",
+      "regiao": {
+        "id": 2,
+        "sigla": "NE",
+        "nome": "Nordeste"
+      }
+    }
+  }
+]
