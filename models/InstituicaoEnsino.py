@@ -1,10 +1,9 @@
 from marshmallow import Schema, fields, validate, ValidationError
 
 class InstituicaoEnsino:
-    def __init__(self, id_instituicao, regiao, cod_regiao, estado, sigla, cod_estado,
+    def __init__(self, regiao, cod_regiao, estado, sigla, cod_estado,
                  municipio, cod_municipio, mesorregiao, cod_mesorregiao,
                  microrregiao, cod_microrregiao, entidade, cod_entidade, qt_mat_bas):
-        self.id_instituicao = id_instituicao
         self.regiao = regiao
         self.cod_regiao = cod_regiao
         self.estado = estado
@@ -22,7 +21,6 @@ class InstituicaoEnsino:
 
     def toDict(self):
         return {
-            'id_instituicao': self.id_instituicao,
             'regiao': self.regiao,
             'cod_regiao': self.cod_regiao,
             'estado': self.estado,
@@ -44,7 +42,6 @@ class InstituicaoEnsinoSchema(Schema):
         if value <= 0:
             raise ValidationError("O valor deve ser um número inteiro positivo.")
     
-    id_instituicao = fields.Int()
     regiao = fields.Str(
         required=True, 
         validate=validate.Length(min=3, max=20), 
@@ -146,14 +143,6 @@ class InstituicaoEnsinoSchema(Schema):
             "required": "Entidade é obrigatória.",
             "null": "Entidade não pode ser nula.",
             "validator_failed": "A Entidade deve ter entre 3 e 100 caracteres."
-        }
-    )
-    cod_entidade = fields.Int(
-        required=True,
-        validate=validate_positive,
-        error_messages={
-            "required": "Código da Entidade é obrigatório.",
-            "null": "Código da Entidade não pode ser nulo."
         }
     )
     qt_mat_bas = fields.Int(
