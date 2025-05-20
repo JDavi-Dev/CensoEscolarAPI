@@ -1,8 +1,29 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, g
 import sqlite3
-from models.InstituicaoEnsino import InstituicaoEnsino
+from models.InstituicaoEnsino import InstituicaoEnsino, InstituicaoEnsinoSchema
+from marshmallow import ValidationError
+
+DATABASE = 'CensoEscolarExtrator.db'
 
 app = Flask(__name__)
+
+def getConnection():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+
+@app.teardown_appcontext
+def closeConnection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+@app.route("/")
+def index():
+    versao = {"versao": "1.0.0"}
+    return jsonify(versao), 200
 
 @app.get("/instituicoes")
 def instituicoesResource():
@@ -13,72 +34,57 @@ def instituicoesResource():
 
     try:
         instituicoesEnsino = []
-        conn = sqlite3.connect('censo_escolar.db')
-        cursor = conn.cursor()
+        cursor = getConnection().cursor()
 
         # Calcular o offset para a consulta
         offset = (page - 1) * per_page
-
+        
         cursor.execute('SELECT * FROM tb_instituicao LIMIT ? OFFSET ?', (per_page, offset))
         resultSet = cursor.fetchall()
 
         for row in resultSet:
             instituicaoEnsino = InstituicaoEnsino(
-                id_instituicao=row[0],
-                regiao=row[1],
-                cod_regiao=row[2],
-                estado=row[3],
-                sigla=row[4],
-                cod_estado=row[5],
-                municipio=row[6],
-                cod_municipio=row[7],
-                mesorregiao=row[8],
-                cod_mesorregiao=row[9],
-                microrregiao=row[10],
-                cod_microrregiao=row[11],
-                entidade=row[12],
-                cod_entidade=row[13],
-                qt_mat_bas=row[14]
+                regiao=row[0],
+                cod_regiao=row[1],
+                estado=row[2],
+                sigla=row[3],
+                cod_estado=row[4],
+                municipio=row[5],
+                cod_municipio=row[6],
+                mesorregiao=row[7],
+                cod_mesorregiao=row[8],
+                microrregiao=row[9],
+                cod_microrregiao=row[10],
+                entidade=row[11],
+                cod_entidade=row[12],
+                qt_mat_bas=row[13]
             )
             instituicoesEnsino.append(instituicaoEnsino.toDict())
 
     except sqlite3.Error as e:
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
-    finally:
-        conn.close()
 
     return jsonify(instituicoesEnsino), 200
-
-
-def validarInstituicao(content):
-    isValido = True
-    if (len(content['entidade']) < 3 or content['entidade'].isdigit()):
-        isValido = False
-    if (not (content['cod_entidade'].isdigit())):
-        isValido = False
-    if (not (content['qt_mat_bas'].isdigit())):
-        isValido = False
-    return isValido
 
 @app.post("/instituicoes")
 def instituicaoInsercaoResource():
     print("Post - Instituição")
-    instituicaoJson = request.get_json()
-    isValido = validarInstituicao(instituicaoJson)
-    if isValido:
-        conn = sqlite3.connect('censo_escolar.db')
+    instituicaoEnsinoSchema = InstituicaoEnsinoSchema()
+    instituicaoData = request.get_json()
+    
+    try:
+        instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
+        conn = getConnection()
         cursor = conn.cursor()
         cursor.execute(
-            'INSERT INTO tb_instituicao (regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, cod_mesorregiao, microrregiao, cod_microrregiao, entidade, cod_entidade, qt_mat_bas) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+            'INSERT INTO tb_instituicao (regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, cod_mesorregiao, microrregiao, cod_microrregiao, entidade, qt_mat_bas) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
             (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'], 
              instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'], instituicaoJson['cod_mesorregiao'], 
-             instituicaoJson['microrregiao'], instituicaoJson['cod_microrregiao'], instituicaoJson['entidade'], instituicaoJson['cod_entidade'], 
-             instituicaoJson['qt_mat_bas'])
+             instituicaoJson['microrregiao'], instituicaoJson['cod_microrregiao'], instituicaoJson['entidade'], instituicaoJson['qt_mat_bas'])
         )
         conn.commit()
-        id_instituicao = cursor.lastrowid
+        cod_entidade = cursor.lastrowid
         instituicaoEnsino = InstituicaoEnsino(
-            id_instituicao, 
             instituicaoJson['regiao'], 
             instituicaoJson['cod_regiao'], 
             instituicaoJson['estado'], 
@@ -90,12 +96,15 @@ def instituicaoInsercaoResource():
             instituicaoJson['cod_mesorregiao'], 
             instituicaoJson['microrregiao'], 
             instituicaoJson['cod_microrregiao'], 
-            instituicaoJson['entidade'], 
-            instituicaoJson['cod_entidade'], 
+            instituicaoJson['entidade'],
+            cod_entidade, 
             instituicaoJson['qt_mat_bas']
         )
-        conn.close()
         return jsonify(instituicaoEnsino.toDict()), 200
+    except ValidationError as err:
+        return jsonify(err.messages), 400
+    except sqlite3.Error as e:
+        return jsonify({"mensagem": "Problema com o banco de dados."}), 500
 
     return jsonify({"mensagem": "Não cadastrado"}), 406
 
@@ -103,7 +112,7 @@ def instituicaoInsercaoResource():
 def instituicaoRemocaoResource(cod_entidade):
     print("Delete - Instituição")
     try:
-        conn = sqlite3.connect('censo_escolar.db')
+        conn = getConnection()
         cursor = conn.cursor()
         cursor.execute('DELETE FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
         conn.commit()
@@ -111,15 +120,13 @@ def instituicaoRemocaoResource(cod_entidade):
             return jsonify({"mensagem": "Instituição não encontrada."}), 404
     except sqlite3.Error as e:
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
-    finally:
-        conn.close()
     return jsonify({"mensagem": "Instituição removida com sucesso."}), 200
 
 @app.route("/instituicoes/<int:cod_entidade>", methods=["PUT"])
 def instituicaoAtualizacaoResource(cod_entidade):
     print("Put - Instituição")
     try:
-        conn = sqlite3.connect('censo_escolar.db')
+        conn = getConnection()
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
         row = cursor.fetchone()
@@ -127,29 +134,27 @@ def instituicaoAtualizacaoResource(cod_entidade):
         if row is None:
             return jsonify({"mensagem": "Instituição não encontrada."}), 404
 
-        instituicaoJson = request.get_json()
-        isValido = validarInstituicao(instituicaoJson)
-        if not isValido:
-            return jsonify({"mensagem": "Dados inválidos."}), 406
+        instituicaoEnsinoSchema = InstituicaoEnsinoSchema()
+        instituicaoData = request.get_json()
+        instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
 
-        cursor.execute('UPDATE tb_instituicao SET regiao = ?, cod_regiao = ?, estado = ?, sigla = ?, cod_estado = ?, municipio = ?, cod_municipio = ?, mesorregiao = ?, cod_mesorregiao = ?, microrregiao = ?, cod_microrregiao = ?, entidade = ?, cod_entidade = ?, qt_mat_bas = ? WHERE cod_entidade = ?',
+        cursor.execute('UPDATE tb_instituicao SET regiao = ?, cod_regiao = ?, estado = ?, sigla = ?, cod_estado = ?, municipio = ?, cod_municipio = ?, mesorregiao = ?, cod_mesorregiao = ?, microrregiao = ?, cod_microrregiao = ?, entidade = ?, qt_mat_bas = ? WHERE cod_entidade = ?',
                        (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'], 
                         instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'], instituicaoJson['cod_mesorregiao'], 
-                        instituicaoJson['microrregiao'], instituicaoJson['cod_microrregiao'], instituicaoJson['entidade'], instituicaoJson['cod_entidade'], 
+                        instituicaoJson['microrregiao'], instituicaoJson['cod_microrregiao'], instituicaoJson['entidade'],
                         instituicaoJson['qt_mat_bas'], cod_entidade))
         conn.commit()
-
+    except ValidationError as err:
+        return jsonify(err.messages), 400
     except sqlite3.Error as e:
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
-    finally:
-        conn.close()
 
     return jsonify({"mensagem": "Instituição atualizada com sucesso."}), 200
 
 @app.route("/instituicoes/<int:cod_entidade>", methods=["GET"])
 def instituicoesByCodEntidadeResource(cod_entidade):
     try:
-        conn = sqlite3.connect('censo_escolar.db')
+        conn = getConnection()
         cursor = conn.cursor()
         cursor.execute('SELECT * FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
         row = cursor.fetchone()
@@ -158,21 +163,20 @@ def instituicoesByCodEntidadeResource(cod_entidade):
             return jsonify({"mensagem": "Instituição não encontrada."}), 404
 
         instituicaoEnsino = InstituicaoEnsino(
-            id_instituicao=row[0],
-            regiao=row[1],
-            cod_regiao=row[2],
-            estado=row[3],
-            sigla=row[4],
-            cod_estado=row[5],
-            municipio=row[6],
-            cod_municipio=row[7],
-            mesorregiao=row[8],
-            cod_mesorregiao=row[9],
-            microrregiao=row[10],
-            cod_microrregiao=row[11],
-            entidade=row[12],
-            cod_entidade=row[13],
-            qt_mat_bas=row[14]
+            regiao=row[0],
+            cod_regiao=row[1],
+            estado=row[2],
+            sigla=row[3],
+            cod_estado=row[4],
+            municipio=row[5],
+            cod_municipio=row[6],
+            mesorregiao=row[7],
+            cod_mesorregiao=row[8],
+            microrregiao=row[9],
+            cod_microrregiao=row[10],
+            entidade=row[11],
+            cod_entidade=row[12],
+            qt_mat_bas=row[13]
         )
 
     except sqlite3.Error as e:
