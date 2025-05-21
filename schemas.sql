@@ -9,17 +9,15 @@ CREATE TABLE tb_instituicao (
     municipio TEXT,
     cod_municipio INTEGER,
     mesorregiao TEXT,
-    cod_mesorregiao INTEGER,
     microrregiao TEXT,
-    cod_microrregiao INTEGER,
     entidade TEXT,
     cod_entidade INTEGER PRIMARY KEY AUTOINCREMENT,
     qt_mat_bas INTEGER,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (cod_estado) REFERENCES tb_uf(cod_uf),
     FOREIGN KEY (cod_municipio) REFERENCES tb_municipio(cod_municipio),
-    FOREIGN KEY (cod_mesorregiao) REFERENCES tb_mesorregiao(cod_mesorregiao),
-    FOREIGN KEY (cod_microrregiao) REFERENCES tb_microrregiao(cod_microrregiao)
+    FOREIGN KEY (mesorregiao) REFERENCES tb_mesorregiao(nome),
+  FOREIGN KEY (microrregiao) REFERENCES tb_microrregiao(nome)
 );
 
 DROP TABLE IF EXISTS tb_uf;
