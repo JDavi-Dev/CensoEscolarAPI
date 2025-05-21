@@ -1,24 +1,15 @@
-from flask import Flask, request, jsonify, g
+from flask import request, jsonify
 import sqlite3
-from models.InstituicaoEnsino import InstituicaoEnsino, InstituicaoEnsinoSchema
 from marshmallow import ValidationError
 
-DATABASE = 'CensoEscolarExtrator.db'
+from helpers.application import app
+from helpers.database import getConnection
+from helpers.logging import logger
+from helpers.CORS import cors
 
-app = Flask(__name__)
+from models.InstituicaoEnsino import InstituicaoEnsino, InstituicaoEnsinoSchema
 
-def getConnection():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-    return db
-
-
-@app.teardown_appcontext
-def closeConnection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+cors.init_app(app)
 
 @app.route("/")
 def index():
@@ -27,7 +18,7 @@ def index():
 
 @app.get("/instituicoes")
 def instituicoesResource():
-    print("Get - Instituições")
+    logger.info("Get - Instituições")
     
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 10))
@@ -43,6 +34,7 @@ def instituicoesResource():
         resultSet = cursor.fetchall()
 
         for row in resultSet:
+            logger.info(row)
             instituicaoEnsino = InstituicaoEnsino(
                 regiao=row[0],
                 cod_regiao=row[1],
@@ -149,6 +141,8 @@ def instituicaoAtualizacaoResource(cod_entidade):
 
 @app.route("/instituicoes/<int:cod_entidade>", methods=["GET"])
 def instituicoesByCodEntidadeResource(cod_entidade):
+    logger.info("Get - Instituições por código de entidade")
+    logger.info(f"cod_entidade: {cod_entidade}")
     try:
         conn = getConnection()
         cursor = conn.cursor()
