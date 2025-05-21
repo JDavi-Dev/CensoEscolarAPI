@@ -2,8 +2,8 @@ from marshmallow import Schema, fields, validate, ValidationError
 
 class InstituicaoEnsino:
     def __init__(self, regiao, cod_regiao, estado, sigla, cod_estado,
-                 municipio, cod_municipio, mesorregiao, cod_mesorregiao,
-                 microrregiao, cod_microrregiao, entidade, cod_entidade, qt_mat_bas):
+                 municipio, cod_municipio, mesorregiao,
+                 microrregiao, entidade, cod_entidade, qt_mat_bas):
         self.regiao = regiao
         self.cod_regiao = cod_regiao
         self.estado = estado
@@ -12,9 +12,7 @@ class InstituicaoEnsino:
         self.municipio = municipio
         self.cod_municipio = cod_municipio
         self.mesorregiao = mesorregiao
-        self.cod_mesorregiao = cod_mesorregiao
         self.microrregiao = microrregiao
-        self.cod_microrregiao = cod_microrregiao
         self.entidade = entidade
         self.cod_entidade = cod_entidade
         self.qt_mat_bas = qt_mat_bas
@@ -29,9 +27,7 @@ class InstituicaoEnsino:
             'municipio': self.municipio,
             'cod_municipio': self.cod_municipio,
             'mesorregiao': self.mesorregiao,
-            'cod_mesorregiao': self.cod_mesorregiao,
             'microrregiao': self.microrregiao,
-            'cod_microrregiao': self.cod_microrregiao,
             'entidade': self.entidade,
             'cod_entidade': self.cod_entidade,
             'qt_mat_bas': self.qt_mat_bas
@@ -41,7 +37,6 @@ class InstituicaoEnsinoSchema(Schema):
     def validate_positive(value):
         if value <= 0:
             raise ValidationError("O valor deve ser um número inteiro positivo.")
-    
     regiao = fields.Str(
         required=True, 
         validate=validate.Length(min=3, max=20), 
@@ -111,14 +106,6 @@ class InstituicaoEnsinoSchema(Schema):
             "validator_failed": "A Mesorregião deve ter entre 3 e 100 caracteres."
         }
     )
-    cod_mesorregiao = fields.Int(
-        required=True,
-        validate=validate_positive,
-        error_messages={
-            "required": "Código da Mesorregião é obrigatório.",
-            "null": "Código da Mesorregião não pode ser nulo."
-        }
-    )
     microrregiao = fields.Str(
         required=True, 
         validate=validate.Length(min=4, max=100),
@@ -126,14 +113,6 @@ class InstituicaoEnsinoSchema(Schema):
             "required": "Microrregião é obrigatória.",
             "null": "Microrregião não pode ser nula.",
             "validator_failed": "A Microrregião deve ter entre 3 e 100 caracteres."
-        }
-    )
-    cod_microrregiao = fields.Int(
-        required=True,
-        validate=validate_positive,
-        error_messages={
-            "required": "Código da Microrregião é obrigatório.",
-            "null": "Código da Microrregião não pode ser nulo."
         }
     )
     entidade = fields.Str(
@@ -153,3 +132,4 @@ class InstituicaoEnsinoSchema(Schema):
             "null": "Quantidade de Matriculados não pode ser nula."
         }
     )
+
