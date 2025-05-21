@@ -52,12 +52,10 @@ def instituicoesResource():
                 municipio=row[5],
                 cod_municipio=row[6],
                 mesorregiao=row[7],
-                cod_mesorregiao=row[8],
-                microrregiao=row[9],
-                cod_microrregiao=row[10],
-                entidade=row[11],
-                cod_entidade=row[12],
-                qt_mat_bas=row[13]
+                microrregiao=row[8],
+                entidade=row[9],
+                cod_entidade=row[10],
+                qt_mat_bas=row[11]
             )
             instituicoesEnsino.append(instituicaoEnsino.toDict())
 
@@ -77,10 +75,10 @@ def instituicaoInsercaoResource():
         conn = getConnection()
         cursor = conn.cursor()
         cursor.execute(
-            'INSERT INTO tb_instituicao (regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, cod_mesorregiao, microrregiao, cod_microrregiao, entidade, qt_mat_bas) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+            'INSERT INTO tb_instituicao (regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, microrregiao, entidade, qt_mat_bas) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
             (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'], 
-             instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'], instituicaoJson['cod_mesorregiao'], 
-             instituicaoJson['microrregiao'], instituicaoJson['cod_microrregiao'], instituicaoJson['entidade'], instituicaoJson['qt_mat_bas'])
+             instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'],
+             instituicaoJson['microrregiao'], instituicaoJson['entidade'], instituicaoJson['qt_mat_bas'])
         )
         conn.commit()
         cod_entidade = cursor.lastrowid
@@ -93,9 +91,7 @@ def instituicaoInsercaoResource():
             instituicaoJson['municipio'], 
             instituicaoJson['cod_municipio'], 
             instituicaoJson['mesorregiao'], 
-            instituicaoJson['cod_mesorregiao'], 
             instituicaoJson['microrregiao'], 
-            instituicaoJson['cod_microrregiao'], 
             instituicaoJson['entidade'],
             cod_entidade, 
             instituicaoJson['qt_mat_bas']
@@ -138,10 +134,10 @@ def instituicaoAtualizacaoResource(cod_entidade):
         instituicaoData = request.get_json()
         instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
 
-        cursor.execute('UPDATE tb_instituicao SET regiao = ?, cod_regiao = ?, estado = ?, sigla = ?, cod_estado = ?, municipio = ?, cod_municipio = ?, mesorregiao = ?, cod_mesorregiao = ?, microrregiao = ?, cod_microrregiao = ?, entidade = ?, qt_mat_bas = ? WHERE cod_entidade = ?',
+        cursor.execute('UPDATE tb_instituicao SET regiao = ?, cod_regiao = ?, estado = ?, sigla = ?, cod_estado = ?, municipio = ?, cod_municipio = ?, mesorregiao = ?, microrregiao = ?, entidade = ?, qt_mat_bas = ? WHERE cod_entidade = ?',
                        (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'], 
-                        instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'], instituicaoJson['cod_mesorregiao'], 
-                        instituicaoJson['microrregiao'], instituicaoJson['cod_microrregiao'], instituicaoJson['entidade'],
+                        instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'], 
+                        instituicaoJson['microrregiao'], instituicaoJson['entidade'],
                         instituicaoJson['qt_mat_bas'], cod_entidade))
         conn.commit()
     except ValidationError as err:
@@ -171,12 +167,10 @@ def instituicoesByCodEntidadeResource(cod_entidade):
             municipio=row[5],
             cod_municipio=row[6],
             mesorregiao=row[7],
-            cod_mesorregiao=row[8],
-            microrregiao=row[9],
-            cod_microrregiao=row[10],
-            entidade=row[11],
-            cod_entidade=row[12],
-            qt_mat_bas=row[13]
+            microrregiao=row[8],
+            entidade=row[9],
+            cod_entidade=row[10],
+            qt_mat_bas=row[11]
         )
 
     except sqlite3.Error as e:
