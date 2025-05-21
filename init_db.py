@@ -1,7 +1,7 @@
 import sqlite3
 import json
 
-# Conectar ou criar um banco de dados SQLite
+# Conectar/criar o banco de dados SQLite
 conn = sqlite3.connect("CensoEscolarExtrator.db")
 cursor = conn.cursor()
 
@@ -17,9 +17,9 @@ for inst in insts:
     cursor.execute(
         "INSERT INTO tb_instituicao (\
             regiao, cod_regiao, estado, sigla, cod_estado,\
-            municipio, cod_municipio, mesorregiao, cod_mesorregiao,\
-            microrregiao, cod_microrregiao, entidade, cod_entidade, qt_mat_bas\
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            municipio, cod_municipio, mesorregiao, \
+            microrregiao, entidade, cod_entidade, qt_mat_bas\
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (
             inst['regiao'],
             inst['cod_regiao'],
@@ -29,9 +29,7 @@ for inst in insts:
             inst['municipio'],
             inst['cod_municipio'],
             inst['mesorregiao'],
-            inst['cod_mesorregiao'],
             inst['microrregiao'],
-            inst['cod_microrregiao'],
             inst.get('entidade'),
             inst.get('cod_entidade'),
             inst.get('qt_mat_bas')
