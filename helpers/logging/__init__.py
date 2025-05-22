@@ -4,8 +4,9 @@ from logging.handlers import RotatingFileHandler
 # Create a logger with a unique name
 logger = logging.getLogger(__name__)
 
-# Configure logger to log messages of INFO level and above
+# Configure logger to log messages of INFO, ERROR level and above
 logger.setLevel(logging.INFO)
+logger.setLevel(logging.ERROR)
 
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 

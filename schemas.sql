@@ -17,7 +17,7 @@ CREATE TABLE tb_instituicao (
     FOREIGN KEY (cod_estado) REFERENCES tb_uf(cod_uf),
     FOREIGN KEY (cod_municipio) REFERENCES tb_municipio(cod_municipio),
     FOREIGN KEY (mesorregiao) REFERENCES tb_mesorregiao(nome),
-  FOREIGN KEY (microrregiao) REFERENCES tb_microrregiao(nome)
+    FOREIGN KEY (microrregiao) REFERENCES tb_microrregiao(nome)
 );
 
 DROP TABLE IF EXISTS tb_uf;

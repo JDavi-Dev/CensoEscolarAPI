@@ -1,17 +1,17 @@
 import requests
 import json
 
+from helpers.logging import logger
+
 url = "https://servicodados.ibge.gov.br/api/v1/localidades/microrregioes"
 resposta = requests.get(url)
 
 if resposta.status_code == 200:
     microrregioes = resposta.json()
-    # Filtrar apenas microrregiões da região Nordeste (id regiao == 2)
     microrregioes_nordeste = [
         micro for micro in microrregioes
         if micro['mesorregiao']['UF']['regiao']['id'] == 2
     ]
-    # Renomear 'id' para 'cod_microrregiao' e colocar no início
     for i, micro in enumerate(microrregioes_nordeste):
         novo_micro = {
             'cod_microrregiao': micro['id'],
@@ -21,6 +21,6 @@ if resposta.status_code == 200:
         microrregioes_nordeste[i] = novo_micro
     with open('microrregioes_nordeste.json', 'w', encoding='utf-8') as f:
         json.dump(microrregioes_nordeste, f, ensure_ascii=False, indent=2)
-    print("Microrregiões do Nordeste salvas em microrregioes_nordeste.json")
+    logger.info("Microrregiões do Nordeste salvas em microrregioes_nordeste.json")
 else:
-    print("Erro ao acessar a API:", resposta.status_code)
+    logger.error("Erro ao acessar a API:", resposta.status_code)

@@ -1,6 +1,8 @@
 import requests
 import json
 
+from helpers.logging import logger
+
 url = "https://servicodados.ibge.gov.br/api/v1/localidades/mesorregioes"
 resposta = requests.get(url)
 
@@ -20,6 +22,6 @@ if resposta.status_code == 200:
     with open('mesorregioes_nordeste.json', 'w', encoding='utf-8') as f:
         json.dump(mesorregioes_nordeste, f, ensure_ascii=False, indent=2)
 
-    print("Mesorregiões do Nordeste salvas em mesorregioes_nordeste.json")
+    logger.info("Mesorregiões do Nordeste salvas em mesorregioes_nordeste.json")
 else:
-    print("Erro ao acessar a API:", resposta.status_code)
+    logger.error("Erro ao acessar a API:", resposta.status_code)

@@ -52,13 +52,14 @@ def instituicoesResource():
             instituicoesEnsino.append(instituicaoEnsino.toDict())
 
     except sqlite3.Error as e:
+        logger.error("Exception sqlite: " + e)
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
 
     return jsonify(instituicoesEnsino), 200
 
 @app.post("/instituicoes")
 def instituicaoInsercaoResource():
-    print("Post - Instituição")
+    logger.info("Post - Instituição")
     instituicaoEnsinoSchema = InstituicaoEnsinoSchema()
     instituicaoData = request.get_json()
     
@@ -92,13 +93,13 @@ def instituicaoInsercaoResource():
     except ValidationError as err:
         return jsonify(err.messages), 400
     except sqlite3.Error as e:
+        logger.error("Exception sqlite: " + e)
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
-
     return jsonify({"mensagem": "Não cadastrado"}), 406
 
 @app.route("/instituicoes/<int:cod_entidade>", methods=["DELETE"])
 def instituicaoRemocaoResource(cod_entidade):
-    print("Delete - Instituição")
+    logger.info("Delete - Instituição")
     try:
         conn = getConnection()
         cursor = conn.cursor()
@@ -107,12 +108,13 @@ def instituicaoRemocaoResource(cod_entidade):
         if cursor.rowcount == 0:
             return jsonify({"mensagem": "Instituição não encontrada."}), 404
     except sqlite3.Error as e:
+        logger.error("Exception sqlite: " + e)
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
     return jsonify({"mensagem": "Instituição removida com sucesso."}), 200
 
 @app.route("/instituicoes/<int:cod_entidade>", methods=["PUT"])
 def instituicaoAtualizacaoResource(cod_entidade):
-    print("Put - Instituição")
+    logger.info("Put - Instituição")
     try:
         conn = getConnection()
         cursor = conn.cursor()
@@ -135,6 +137,7 @@ def instituicaoAtualizacaoResource(cod_entidade):
     except ValidationError as err:
         return jsonify(err.messages), 400
     except sqlite3.Error as e:
+        logger.error("Exception sqlite: " + e)
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
 
     return jsonify({"mensagem": "Instituição atualizada com sucesso."}), 200
@@ -152,6 +155,7 @@ def instituicoesByCodEntidadeResource(cod_entidade):
         if row is None:
             return jsonify({"mensagem": "Instituição não encontrada."}), 404
 
+        logger.info(row)
         instituicaoEnsino = InstituicaoEnsino(
             regiao=row[0],
             cod_regiao=row[1],
@@ -168,6 +172,7 @@ def instituicoesByCodEntidadeResource(cod_entidade):
         )
 
     except sqlite3.Error as e:
+        logger.error("Exception sqlite: " + e)
         return jsonify({"mensagem": "Problema com o banco de dados."}), 500
     finally:
         conn.close()
