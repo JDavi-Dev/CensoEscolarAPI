@@ -1,4 +1,21 @@
 from marshmallow import Schema, fields, validate, ValidationError
+from flask_restful import fields as flaskFields
+
+instiuicao_fields = {
+    'regiao': flaskFields.String,
+    'cod_regiao': flaskFields.Integer,
+    'estado': flaskFields.String,
+    'sigla': flaskFields.String,
+    'cod_estado': flaskFields.Integer,
+    'municipio': flaskFields.String,
+    'cod_municipio': flaskFields.Integer,
+    'mesorregiao': flaskFields.String,
+    'microrregiao': flaskFields.String,
+    'entidade': flaskFields.String,
+    'cod_entidade': flaskFields.Integer,
+    'qt_mat_bas': flaskFields.Integer
+}
+
 
 class InstituicaoEnsino:
     def __init__(self, regiao, cod_regiao, estado, sigla, cod_estado,
@@ -17,29 +34,15 @@ class InstituicaoEnsino:
         self.cod_entidade = cod_entidade
         self.qt_mat_bas = qt_mat_bas
 
-    def toDict(self):
-        return {
-            'regiao': self.regiao,
-            'cod_regiao': self.cod_regiao,
-            'estado': self.estado,
-            'sigla': self.sigla,
-            'cod_estado': self.cod_estado,
-            'municipio': self.municipio,
-            'cod_municipio': self.cod_municipio,
-            'mesorregiao': self.mesorregiao,
-            'microrregiao': self.microrregiao,
-            'entidade': self.entidade,
-            'cod_entidade': self.cod_entidade,
-            'qt_mat_bas': self.qt_mat_bas
-        }
 
 class InstituicaoEnsinoSchema(Schema):
     def validate_positive(value):
         if value <= 0:
-            raise ValidationError("O valor deve ser um número inteiro positivo.")
+            raise ValidationError(
+                "O valor deve ser um número inteiro positivo.")
     regiao = fields.Str(
-        required=True, 
-        validate=validate.Length(min=3, max=20), 
+        required=True,
+        validate=validate.Length(min=3, max=20),
         error_messages={
             "required": "Nome da Região é obrigatório.",
             "null": "Nome da Região não pode ser nulo.",
@@ -55,16 +58,16 @@ class InstituicaoEnsinoSchema(Schema):
         }
     )
     estado = fields.Str(
-        required=True, 
-        validate=validate.Length(min=5, max=50),
+        required=True,
+        validate=validate.Length(min=4, max=50),
         error_messages={
             "required": "Estado é obrigatório.",
             "null": "Estado não pode ser nulo.",
-            "validator_failed": "O Estado deve ter entre 5 e 50 caracteres."
+            "validator_failed": "O Estado deve ter entre 4 e 50 caracteres."
         }
     )
     sigla = fields.Str(
-        required=True, 
+        required=True,
         validate=validate.Length(min=2, max=2),
         error_messages={
             "required": "Sigla é obrigatória.",
@@ -81,7 +84,7 @@ class InstituicaoEnsinoSchema(Schema):
         }
     )
     municipio = fields.Str(
-        required=True, 
+        required=True,
         validate=validate.Length(min=3, max=150),
         error_messages={
             "required": "Município é obrigatório.",
@@ -98,7 +101,7 @@ class InstituicaoEnsinoSchema(Schema):
         }
     )
     mesorregiao = fields.Str(
-        required=True, 
+        required=True,
         validate=validate.Length(min=4, max=100),
         error_messages={
             "required": "Mesorregião é obrigatória.",
@@ -107,7 +110,7 @@ class InstituicaoEnsinoSchema(Schema):
         }
     )
     microrregiao = fields.Str(
-        required=True, 
+        required=True,
         validate=validate.Length(min=4, max=100),
         error_messages={
             "required": "Microrregião é obrigatória.",
@@ -116,7 +119,7 @@ class InstituicaoEnsinoSchema(Schema):
         }
     )
     entidade = fields.Str(
-        required=True, 
+        required=True,
         validate=validate.Length(min=3, max=100),
         error_messages={
             "required": "Entidade é obrigatória.",
@@ -132,4 +135,3 @@ class InstituicaoEnsinoSchema(Schema):
             "null": "Quantidade de Matriculados não pode ser nula."
         }
     )
-
