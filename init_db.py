@@ -1,17 +1,90 @@
-import sqlite3
+import psycopg2
 import json
 
-# Conectar/criar o banco de dados SQLite
-conn = sqlite3.connect("CensoEscolarExtrator.db")
+conn_params = {
+    'database': 'censoescolar',
+    'user': 'postgres',
+    'password': '12345',
+    'host': 'localhost',
+    'port': '5432'
+}
+
+conn = psycopg2.connect(**conn_params)
 cursor = conn.cursor()
 
 # 1. Criar as tabelas conforme schemas.sql
 with open("schemas.sql", "r", encoding="utf-8") as sql_file:
     sql_script = sql_file.read()
-    cursor.executescript(sql_script)
+    cursor.execute(sql_script)
 
-# 2. Inserir Instituições
-with open("censo_nordeste_2024.json", "r", encoding="utf-8") as f:
+# 2. Inserir UFs
+with open("ufs_brasil.json", "r", encoding="utf-8") as f:
+    ufs = json.load(f)
+for uf in ufs:
+    cursor.execute(
+        "INSERT INTO tb_uf (cod_uf, sigla, nome, regiao) VALUES (%s, %s, %s, %s)",
+        (
+            uf['cod_uf'],
+            uf['sigla'],
+            uf['nome'],
+            uf['regiao']
+        )
+    )
+
+# 3. Inserir Mesorregiões
+with open("mesorregioes_brasil.json", "r", encoding="utf-8") as f:
+    mesor = json.load(f)
+for m in mesor:
+    cursor.execute(
+        "INSERT INTO tb_mesorregiao (cod_mesorregiao, nome, cod_uf) VALUES (%s, %s, %s)",
+        (
+            m['cod_mesorregiao'],
+            m['nome'],
+            m['UF']['id']
+        )
+    )
+
+# 4. Inserir Microrregiões
+with open("microrregioes_brasil.json", "r", encoding="utf-8") as f:
+    micros = json.load(f)
+for micro in micros:
+    cursor.execute(
+        "INSERT INTO tb_microrregiao (cod_microrregiao, nome, cod_mesorregiao, cod_uf) VALUES (%s, %s, %s, %s)",
+        (
+            micro['cod_microrregiao'],
+            micro['nome'],
+            micro['mesorregiao']['id'],
+            micro['mesorregiao']['UF']['id']
+        )
+    )
+
+# 5. Inserir Municípios
+with open("municipios_brasil.json", "r", encoding="utf-8") as f:
+    munis = json.load(f)
+for mun in munis:
+    microrregiao = mun.get('microrregiao')
+    if microrregiao is None:
+        print(f"Aviso: Município {mun['nome']} (código: {mun['cod_municipio']}) não possui microrregião. Pulando...")
+        continue  # Pula para o próximo município
+
+    mesorregiao = microrregiao.get('mesorregiao')
+    if mesorregiao is None:
+        print(f"Aviso: Microrregião do município {mun['nome']} (código: {mun['cod_municipio']}) não possui mesorregião. Pulando...")
+        continue  # Pula para o próximo município
+
+    cursor.execute(
+        "INSERT INTO tb_municipio (cod_municipio, nome, cod_microrregiao, cod_mesorregiao, cod_uf) VALUES (%s, %s, %s, %s, %s)",
+        (
+            mun['cod_municipio'],
+            mun['nome'],
+            microrregiao['id'],
+            mesorregiao['id'],
+            mesorregiao['UF']['id']
+        )
+    )
+
+# 6. Inserir Instituições
+with open("censo_escolar_2024.json", "r", encoding="utf-8") as f:
     insts = json.load(f)
 for inst in insts:
     cursor.execute(
@@ -19,7 +92,7 @@ for inst in insts:
             regiao, cod_regiao, estado, sigla, cod_estado,\
             municipio, cod_municipio, mesorregiao, \
             microrregiao, entidade, cod_entidade, qt_mat_bas\
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
         (
             inst['regiao'],
             inst['cod_regiao'],
@@ -36,66 +109,10 @@ for inst in insts:
         )
     )
 
-# 3. Inserir UFs
-with open("ufs_nordeste.json", "r", encoding="utf-8") as f:
-    ufs = json.load(f)
-for uf in ufs:
-    cursor.execute(
-        "INSERT OR IGNORE INTO tb_uf (cod_uf, sigla, nome, regiao) VALUES (?, ?, ?, ?)",
-        (
-            uf['cod_uf'],
-            uf['sigla'],
-            uf['nome'],
-            uf['regiao']
-        )
-    )
-
-# 4. Inserir Municípios
-with open("municipios_nordeste.json", "r", encoding="utf-8") as f:
-    munis = json.load(f)
-for mun in munis:
-    cursor.execute(
-        "INSERT OR IGNORE INTO tb_municipio (cod_municipio, nome, cod_microrregiao, cod_mesorregiao, cod_uf) VALUES (?, ?, ?, ?, ?)",
-        (
-            mun['cod_municipio'],
-            mun['nome'],
-            mun['microrregiao']['id'],
-            mun['microrregiao']['mesorregiao']['id'],
-            mun['microrregiao']['mesorregiao']['UF']['id']
-        )
-    )
-
-
-# 5. Inserir Mesorregiões
-with open("mesorregioes_nordeste.json", "r", encoding="utf-8") as f:
-    mesor = json.load(f)
-for m in mesor:
-    cursor.execute(
-        "INSERT OR IGNORE INTO tb_mesorregiao (cod_mesorregiao, nome, cod_uf) VALUES (?, ?, ?)",
-        (
-            m['cod_mesorregiao'],
-            m['nome'],
-            m['UF']['id']
-        )
-    )
-
-# 6. Inserir Microrregiões
-with open("microrregioes_nordeste.json", "r", encoding="utf-8") as f:
-    micros = json.load(f)
-for micro in micros:
-    cursor.execute(
-        "INSERT OR IGNORE INTO tb_microrregiao (cod_microrregiao, nome, cod_mesorregiao, cod_uf) VALUES (?, ?, ?, ?)",
-        (
-            micro['cod_microrregiao'],
-            micro['nome'],
-            micro['mesorregiao']['id'],
-            micro['mesorregiao']['UF']['id']
-        )
-    )
-
-
+# Sicroniza a sequência com o valor máximo do cod_entidade
+cursor.execute("SELECT setval('public.tb_instituicao_cod_entidade_seq', (SELECT MAX(cod_entidade) FROM tb_instituicao))")
 
 # Commit e fechar conexão
 conn.commit()
 conn.close()
-print("Banco 'CensoEscolarExtrator.db' inicializado com sucesso.")
+print("Banco inicializado com sucesso.")

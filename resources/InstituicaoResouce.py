@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource, marshal
 
-import sqlite3
+import psycopg2
 from marshmallow import ValidationError
 
 from helpers.database import getConnection
@@ -26,7 +26,7 @@ class InstituicoesResouce(Resource):
             offset = (page - 1) * per_page
 
             cursor.execute(
-                'SELECT * FROM tb_instituicao LIMIT ? OFFSET ?', (per_page, offset))
+                'SELECT * FROM tb_instituicao LIMIT %s OFFSET %s', (per_page, offset))
             resultSet = cursor.fetchall()
 
             for row in resultSet:
@@ -47,8 +47,8 @@ class InstituicoesResouce(Resource):
                 )
                 instituicoesEnsino.append(instituicaoEnsino)
 
-        except sqlite3.Error:
-            logger.error("Exception sqlite")
+        except psycopg2.Error:
+            logger.error("Exception postgres")
             return {"mensagem": "Problema com o banco de dados."}, 500
 
         logger.info("Instituições retornadas com sucesso")
@@ -63,14 +63,16 @@ class InstituicoesResouce(Resource):
             instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
             conn = getConnection()
             cursor = conn.cursor()
+
             cursor.execute(
-                'INSERT INTO tb_instituicao (regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, microrregiao, entidade, qt_mat_bas) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                'INSERT INTO tb_instituicao (regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, microrregiao, entidade, qt_mat_bas) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING cod_entidade',
                 (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'],
                  instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'],
                  instituicaoJson['microrregiao'], instituicaoJson['entidade'], instituicaoJson['qt_mat_bas'])
             )
             conn.commit()
-            cod_entidade = cursor.lastrowid
+
+            cod_entidade = cursor.fetchone()[0]
             instituicaoEnsino = InstituicaoEnsino(
                 instituicaoJson['regiao'],
                 instituicaoJson['cod_regiao'],
@@ -90,7 +92,7 @@ class InstituicoesResouce(Resource):
         except ValidationError as err:
             logger.warning(f"Erro(s) na validação ao inserir nova instituição: \n\t{err.messages}")
             return {"mensagem": "Falha na validação dos dados. Verifique os campos e tente novamente.", "detalhes": err.messages}, 422
-        except sqlite3.Error:
+        except psycopg2.Error:
             log_exception("Exception sqlite")
             return {"mensagem": "Problema com o banco de dados."}, 500
 
@@ -102,7 +104,7 @@ class InstituicaoResouce(Resource):
             conn = getConnection()
             cursor = conn.cursor()
             cursor.execute(
-                'SELECT * FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
+                'SELECT * FROM tb_instituicao WHERE cod_entidade = %s', (cod_entidade,))
             row = cursor.fetchone()
 
             if row is None:
@@ -125,8 +127,9 @@ class InstituicaoResouce(Resource):
                 qt_mat_bas=row[11]
             )
 
-        except sqlite3.Error:
-            log_exception("Exception sqlite")
+        except psycopg2.Error as e:
+            log_exception("Exception postgres")
+            print(e)
             return {"mensagem": "Problema com o banco de dados."}, 500
         finally:
             conn.close()
@@ -140,7 +143,7 @@ class InstituicaoResouce(Resource):
             conn = getConnection()
             cursor = conn.cursor()
             cursor.execute(
-                'SELECT * FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
+                'SELECT * FROM tb_instituicao WHERE cod_entidade = %s', (cod_entidade,))
             row = cursor.fetchone()
 
             if row is None:
@@ -151,7 +154,7 @@ class InstituicaoResouce(Resource):
             instituicaoData = request.get_json()
             instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
 
-            cursor.execute('UPDATE tb_instituicao SET regiao = ?, cod_regiao = ?, estado = ?, sigla = ?, cod_estado = ?, municipio = ?, cod_municipio = ?, mesorregiao = ?, microrregiao = ?, entidade = ?, qt_mat_bas = ? WHERE cod_entidade = ?',
+            cursor.execute('UPDATE tb_instituicao SET regiao = %s, cod_regiao = %s, estado = %s, sigla = %s, cod_estado = %s, municipio = %s, cod_municipio = %s, mesorregiao = %s, microrregiao = %s, entidade = %s, qt_mat_bas = %s WHERE cod_entidade = %s',
                            (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'],
                             instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'],
                             instituicaoJson['microrregiao'], instituicaoJson['entidade'],
@@ -160,8 +163,8 @@ class InstituicaoResouce(Resource):
         except ValidationError as err:
             logger.warning(f"Erro de validação ao atualizar instituição com código: {cod_entidade}\n\t{err.messages}")
             return {"mensagem": "Falha na validação dos dados. Verifique os campos e tente novamente.", "detalhes": err.messages}, 422
-        except sqlite3.Error:
-            log_exception("Exception sqlite")
+        except psycopg2.Error:
+            log_exception("Exception postgres")
             return {"mensagem": "Problema com o banco de dados."}, 500
 
         logger.info(f"Instituição com código {cod_entidade} atualizada com sucesso.")
@@ -172,7 +175,7 @@ class InstituicaoResouce(Resource):
         try:
             conn = getConnection()
             cursor = conn.cursor()
-            cursor.execute('DELETE FROM tb_instituicao WHERE cod_entidade = ?', (cod_entidade,))
+            cursor.execute('DELETE FROM tb_instituicao WHERE cod_entidade = %s', (cod_entidade,))
             conn.commit()
             if cursor.rowcount == 0:
                 logger.warning(f"Instituição com código {cod_entidade} não encontrada para deleção.") 
@@ -180,6 +183,6 @@ class InstituicaoResouce(Resource):
             else:
                 logger.info(f"Instituição com código {cod_entidade} removida com sucesso.")
                 return {"mensagem": "Instituição removida com sucesso."}, 200
-        except sqlite3.Error:
-            log_exception("Exception sqlite")
+        except psycopg2.Error:
+            log_exception("Exception postgres")
             return {"mensagem": "Problema com o banco de dados."}, 500

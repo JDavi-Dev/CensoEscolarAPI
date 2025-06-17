@@ -1,3 +1,47 @@
+DROP TABLE IF EXISTS tb_uf;
+
+CREATE TABLE tb_uf (
+  cod_uf SERIAL PRIMARY KEY,
+  sigla TEXT ,
+  nome TEXT ,
+  regiao TEXT
+);
+
+DROP TABLE IF EXISTS tb_mesorregiao;
+
+CREATE TABLE tb_mesorregiao (
+  cod_mesorregiao SERIAL PRIMARY KEY,
+  nome TEXT,
+  cod_uf INTEGER,
+  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf),
+  UNIQUE (nome, cod_uf)
+);
+
+DROP TABLE IF EXISTS tb_microrregiao;
+
+CREATE TABLE tb_microrregiao (
+  cod_microrregiao SERIAL PRIMARY KEY,
+  nome TEXT,
+  cod_mesorregiao INTEGER,
+  cod_uf INTEGER,
+  FOREIGN KEY (cod_mesorregiao) REFERENCES tb_mesorregiao(cod_mesorregiao),
+  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf),
+  UNIQUE (nome, cod_uf)
+);
+
+DROP TABLE IF EXISTS tb_municipio;
+
+CREATE TABLE tb_municipio (
+  cod_municipio SERIAL PRIMARY KEY,
+  nome TEXT,
+  cod_microrregiao INTEGER,
+  cod_mesorregiao INTEGER,
+  cod_uf INTEGER,
+  FOREIGN KEY (cod_microrregiao) REFERENCES tb_microrregiao(cod_microrregiao),
+  FOREIGN KEY (cod_mesorregiao) REFERENCES tb_mesorregiao(cod_mesorregiao),
+  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf)
+);
+
 DROP TABLE IF EXISTS tb_instituicao;
 
 CREATE TABLE tb_instituicao (
@@ -11,53 +55,11 @@ CREATE TABLE tb_instituicao (
     mesorregiao TEXT,
     microrregiao TEXT,
     entidade TEXT,
-    cod_entidade INTEGER PRIMARY KEY AUTOINCREMENT,
+    cod_entidade SERIAL PRIMARY KEY,
     qt_mat_bas INTEGER,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (cod_estado) REFERENCES tb_uf(cod_uf),
     FOREIGN KEY (cod_municipio) REFERENCES tb_municipio(cod_municipio),
-    FOREIGN KEY (mesorregiao) REFERENCES tb_mesorregiao(nome),
-    FOREIGN KEY (microrregiao) REFERENCES tb_microrregiao(nome)
-);
-
-DROP TABLE IF EXISTS tb_uf;
-
-CREATE TABLE tb_uf (
-  cod_uf INTEGER PRIMARY KEY,
-  sigla TEXT ,
-  nome TEXT ,
-  regiao TEXT
-);
-
-DROP TABLE IF EXISTS tb_municipio;
-
-CREATE TABLE tb_municipio (
-  cod_municipio INTEGER PRIMARY KEY,
-  nome TEXT ,
-  cod_microrregiao INTEGER,
-  cod_mesorregiao INTEGER,
-  cod_uf INTEGER,
-  FOREIGN KEY (cod_microrregiao) REFERENCES tb_microrregiao(cod_microrregiao),
-  FOREIGN KEY (cod_mesorregiao) REFERENCES tb_mesorregiao(cod_mesorregiao),
-  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf)
-);
-
-DROP TABLE IF EXISTS tb_microrregiao;
-
-CREATE TABLE tb_microrregiao (
-  cod_microrregiao INTEGER PRIMARY KEY,
-  nome TEXT ,
-  cod_mesorregiao INTEGER,
-  cod_uf INTEGER,
-  FOREIGN KEY (cod_mesorregiao) REFERENCES tb_mesorregiao(cod_mesorregiao),
-  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf)
-);
-
-DROP TABLE IF EXISTS tb_mesorregiao;
-
-CREATE TABLE tb_mesorregiao (
-  cod_mesorregiao INTEGER PRIMARY KEY,
-  nome TEXT ,
-  cod_uf INTEGER,
-  FOREIGN KEY (cod_uf) REFERENCES tb_uf(cod_uf)
+    FOREIGN KEY (mesorregiao, cod_estado) REFERENCES tb_mesorregiao(nome, cod_uf),
+    FOREIGN KEY (microrregiao, cod_estado) REFERENCES tb_microrregiao(nome, cod_uf)
 );
