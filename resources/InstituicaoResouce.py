@@ -32,18 +32,19 @@ class InstituicoesResouce(Resource):
             for row in resultSet:
                 logger.info(row)
                 instituicaoEnsino = InstituicaoEnsino(
-                    regiao=row[0],
-                    cod_regiao=row[1],
-                    estado=row[2],
-                    sigla=row[3],
-                    cod_estado=row[4],
-                    municipio=row[5],
-                    cod_municipio=row[6],
-                    mesorregiao=row[7],
-                    microrregiao=row[8],
-                    entidade=row[9],
-                    cod_entidade=row[10],
-                    qt_mat_bas=row[11]
+                    ano_censo=row[0],
+                    regiao=row[1],
+                    cod_regiao=row[2],
+                    estado=row[3],
+                    sigla=row[4],
+                    cod_estado=row[5],
+                    municipio=row[6],
+                    cod_municipio=row[7],
+                    mesorregiao=row[8],
+                    microrregiao=row[9],
+                    entidade=row[10],
+                    cod_entidade=row[11],
+                    qt_mat_bas=row[12]
                 )
                 instituicoesEnsino.append(instituicaoEnsino)
 
@@ -65,8 +66,8 @@ class InstituicoesResouce(Resource):
             cursor = conn.cursor()
 
             cursor.execute(
-                'INSERT INTO tb_instituicao (regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, microrregiao, entidade, qt_mat_bas) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING cod_entidade',
-                (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'],
+                'INSERT INTO tb_instituicao (ano_censo, regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, microrregiao, entidade, qt_mat_bas) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING cod_entidade',
+                (instituicaoJson['ano_censo'], instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'],
                  instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'],
                  instituicaoJson['microrregiao'], instituicaoJson['entidade'], instituicaoJson['qt_mat_bas'])
             )
@@ -74,6 +75,7 @@ class InstituicoesResouce(Resource):
 
             cod_entidade = cursor.fetchone()[0]
             instituicaoEnsino = InstituicaoEnsino(
+                instituicaoJson['ano_censo'],
                 instituicaoJson['regiao'],
                 instituicaoJson['cod_regiao'],
                 instituicaoJson['estado'],
@@ -113,18 +115,19 @@ class InstituicaoResouce(Resource):
 
             logger.info(row)
             instituicaoEnsino = InstituicaoEnsino(
-                regiao=row[0],
-                cod_regiao=row[1],
-                estado=row[2],
-                sigla=row[3],
-                cod_estado=row[4],
-                municipio=row[5],
-                cod_municipio=row[6],
-                mesorregiao=row[7],
-                microrregiao=row[8],
-                entidade=row[9],
-                cod_entidade=row[10],
-                qt_mat_bas=row[11]
+                ano_censo=row[0],
+                regiao=row[1],
+                cod_regiao=row[2],
+                estado=row[3],
+                sigla=row[4],
+                cod_estado=row[5],
+                municipio=row[6],
+                cod_municipio=row[7],
+                mesorregiao=row[8],
+                microrregiao=row[9],
+                entidade=row[10],
+                cod_entidade=row[11],
+                qt_mat_bas=row[12]
             )
 
         except psycopg2.Error as e:
@@ -154,8 +157,8 @@ class InstituicaoResouce(Resource):
             instituicaoData = request.get_json()
             instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
 
-            cursor.execute('UPDATE tb_instituicao SET regiao = %s, cod_regiao = %s, estado = %s, sigla = %s, cod_estado = %s, municipio = %s, cod_municipio = %s, mesorregiao = %s, microrregiao = %s, entidade = %s, qt_mat_bas = %s WHERE cod_entidade = %s',
-                           (instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'],
+            cursor.execute('UPDATE tb_instituicao SET ano_censo = %s, regiao = %s, cod_regiao = %s, estado = %s, sigla = %s, cod_estado = %s, municipio = %s, cod_municipio = %s, mesorregiao = %s, microrregiao = %s, entidade = %s, qt_mat_bas = %s WHERE cod_entidade = %s',
+                           (instituicaoJson['ano_censo'], instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'],
                             instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'],
                             instituicaoJson['microrregiao'], instituicaoJson['entidade'],
                             instituicaoJson['qt_mat_bas'], cod_entidade))

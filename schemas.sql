@@ -45,6 +45,7 @@ CREATE TABLE tb_municipio (
 DROP TABLE IF EXISTS tb_instituicao;
 
 CREATE TABLE tb_instituicao (
+    ano_censo INTEGER,
     regiao TEXT,
     cod_regiao INTEGER,
     estado TEXT,
@@ -55,9 +56,10 @@ CREATE TABLE tb_instituicao (
     mesorregiao TEXT,
     microrregiao TEXT,
     entidade TEXT,
-    cod_entidade SERIAL PRIMARY KEY,
+    cod_entidade SERIAL,
     qt_mat_bas INTEGER,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ano_censo, cod_entidade),
     FOREIGN KEY (cod_estado) REFERENCES tb_uf(cod_uf),
     FOREIGN KEY (cod_municipio) REFERENCES tb_municipio(cod_municipio),
     FOREIGN KEY (mesorregiao, cod_estado) REFERENCES tb_mesorregiao(nome, cod_uf),

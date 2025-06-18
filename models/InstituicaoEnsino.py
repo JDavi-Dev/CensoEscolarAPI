@@ -2,6 +2,7 @@ from marshmallow import Schema, fields, validate, ValidationError
 from flask_restful import fields as flaskFields
 
 instiuicao_fields = {
+    'ano_censo': flaskFields.Integer,
     'regiao': flaskFields.String,
     'cod_regiao': flaskFields.Integer,
     'estado': flaskFields.String,
@@ -18,9 +19,10 @@ instiuicao_fields = {
 
 
 class InstituicaoEnsino:
-    def __init__(self, regiao, cod_regiao, estado, sigla, cod_estado,
+    def __init__(self, ano_censo, regiao, cod_regiao, estado, sigla, cod_estado,
                  municipio, cod_municipio, mesorregiao,
                  microrregiao, entidade, cod_entidade, qt_mat_bas):
+        self.ano_censo = ano_censo
         self.regiao = regiao
         self.cod_regiao = cod_regiao
         self.estado = estado
@@ -40,6 +42,14 @@ class InstituicaoEnsinoSchema(Schema):
         if value <= 0:
             raise ValidationError(
                 "O valor deve ser um número inteiro positivo.")
+    ano_censo = fields.Int(
+        required=True,
+        validate=validate_positive,
+        error_messages={
+            "required": "O ano do censo é obrigatório.",
+            "null": "O ano do censo não pode ser nulo."
+        }
+    )
     regiao = fields.Str(
         required=True,
         validate=validate.Length(min=3, max=20),
