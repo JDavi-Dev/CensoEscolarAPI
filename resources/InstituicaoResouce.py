@@ -132,7 +132,6 @@ class InstituicaoResouce(Resource):
 
         except psycopg2.Error as e:
             log_exception("Exception postgres")
-            print(e)
             return {"mensagem": "Problema com o banco de dados."}, 500
         finally:
             conn.close()

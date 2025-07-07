@@ -1,6 +1,8 @@
 from marshmallow import Schema, fields, validate, ValidationError
 from flask_restful import fields as flaskFields
 
+from datetime import datetime
+
 instiuicao_fields = {
     'ano_censo': flaskFields.Integer,
     'regiao': flaskFields.String,
@@ -38,13 +40,10 @@ class InstituicaoEnsino:
 
 
 class InstituicaoEnsinoSchema(Schema):
-    def validate_positive(value):
-        if value <= 0:
-            raise ValidationError(
-                "O valor deve ser um número inteiro positivo.")
     ano_censo = fields.Int(
         required=True,
-        validate=validate_positive,
+        validate=validate.Range(min=1995, max=datetime.now(
+        ).year - 1, error=f"O ano deve estar entre 1995 e {datetime.now().year - 1}."),
         error_messages={
             "required": "O ano do censo é obrigatório.",
             "null": "O ano do censo não pode ser nulo."
@@ -61,7 +60,8 @@ class InstituicaoEnsinoSchema(Schema):
     )
     cod_regiao = fields.Int(
         required=True,
-        validate=validate_positive,
+        validate=validate.Range(
+            min=1, max=5, error="O codigo de região deve estar entre 1 e 5"),
         error_messages={
             "required": "Código da Região é obrigatório.",
             "null": "Código da Região não pode ser nulo."
@@ -85,9 +85,11 @@ class InstituicaoEnsinoSchema(Schema):
             "validator_failed": "A Sigla deve ter exatamente 2 caracteres."
         }
     )
+    UFS_VALIDAS = [11, 12, 13, 14, 15, 16, 17, 21, 22, 23, 24,
+                   25, 26, 27, 28, 29, 31, 32, 33, 35, 41, 42, 43, 50, 51, 52, 53]
     cod_estado = fields.Int(
         required=True,
-        validate=validate_positive,
+        validate=validate.OneOf(UFS_VALIDAS, error=f"Código de estado inválido. Valores aceitos: {UFS_VALIDAS}"),
         error_messages={
             "required": "Código do Estado é obrigatório.",
             "null": "Código do Estado não pode ser nulo."
@@ -102,9 +104,12 @@ class InstituicaoEnsinoSchema(Schema):
             "validator_failed": "O Município deve ter entre 3 e 150 caracteres."
         }
     )
+    def tamanho_cod_municipio(value):
+        if len(str(value)) != 7:
+            raise ValidationError("O código do município deve ter 7 dígitos.")
     cod_municipio = fields.Int(
         required=True,
-        validate=validate_positive,
+        validate=tamanho_cod_municipio,
         error_messages={
             "required": "Código do Município é obrigatório.",
             "null": "Código do Município não pode ser nulo."
@@ -139,7 +144,7 @@ class InstituicaoEnsinoSchema(Schema):
     )
     qt_mat_bas = fields.Int(
         required=True,
-        validate=validate_positive,
+        validate=validate.Range(min=1, error="O valor deve ser um número inteiro positivo."),
         error_messages={
             "required": "Quantidade de Matriculados é obrigatória.",
             "null": "Quantidade de Matriculados não pode ser nula."
