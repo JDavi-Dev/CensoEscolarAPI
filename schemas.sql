@@ -65,3 +65,15 @@ CREATE TABLE tb_instituicao (
     FOREIGN KEY (mesorregiao, cod_estado) REFERENCES tb_mesorregiao(nome, cod_uf),
     FOREIGN KEY (microrregiao, cod_estado) REFERENCES tb_microrregiao(nome, cod_uf)
 );
+
+DROP TABLE IF EXISTS censo_escolar;
+
+CREATE TABLE censo_escolar (
+    ano_censo INTEGER,
+    estado TEXT,
+    sigla TEXT,
+    cod_estado INTEGER,
+    total_matriculas BIGINT,
+    PRIMARY KEY (ano_censo, cod_estado),
+    FOREIGN KEY (cod_estado) REFERENCES tb_uf(cod_uf)
+);
