@@ -18,7 +18,7 @@ if resposta.status_code == 200:
         }
         mesorregioes_brasil.append(nova_meso)
 
-    with open('mesorregioes_brasil.json', 'w', encoding='utf-8') as f:
+    with open('data/mesorregioes_brasil.json', 'w', encoding='utf-8') as f:
         json.dump(mesorregioes_brasil, f, ensure_ascii=False, indent=2)
 
     logger.info("Mesorregiões do Brasil salvas em mesorregioes_brasil.json")

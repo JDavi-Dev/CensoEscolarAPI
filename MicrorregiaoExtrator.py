@@ -18,7 +18,7 @@ if resposta.status_code == 200:
         }
         microrregioes_brasil.append(novo_micro)
 
-    with open('microrregioes_brasil.json', 'w', encoding='utf-8') as f:
+    with open('data/microrregioes_brasil.json', 'w', encoding='utf-8') as f:
         json.dump(microrregioes_brasil, f, ensure_ascii=False, indent=2)
     logger.info("Microrregiões do Brasil salvas em microrregioes_brasil.json")
 else:

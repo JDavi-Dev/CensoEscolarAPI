@@ -19,7 +19,7 @@ if resposta.status_code == 200:
         }
         ufs_brasil.append(novo_uf)
 
-    with open('ufs_brasil.json', 'w', encoding='utf-8') as f:
+    with open('data/ufs_brasil.json', 'w', encoding='utf-8') as f:
         json.dump(ufs_brasil, f, ensure_ascii=False, indent=2)
     logger.info("UFs do Brasil salvas em ufs_brasil.json")
 else:

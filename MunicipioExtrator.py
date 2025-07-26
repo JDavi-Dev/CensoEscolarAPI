@@ -28,7 +28,7 @@ if resposta.status_code == 200:
         }
         municipios_brasil.append(novo_mun)
 
-    with open('municipios_brasil.json', 'w', encoding='utf-8') as f:
+    with open('data/municipios_brasil.json', 'w', encoding='utf-8') as f:
         json.dump(municipios_brasil, f, ensure_ascii=False, indent=2)
     logger.info("Municípios do Brasil salvos em municipios_brasil.json")
 else:
