@@ -1,74 +1,56 @@
 from flask_restful import Resource, marshal
 
-import psycopg2
+from sqlalchemy.exc import SQLAlchemyError
+from flask import abort
 
-from helpers.database import getConnection
+from helpers.database import db
 from helpers.logging import logger, log_exception
 
+from models import UF, CensoEscolar, Mesorregiao, Microrregiao, Municipio, Instituicao
 from models.CensoEscolar import CensoEscolar, censo_fields
 
 class CensosEscolaresResource(Resource):
     def get(self, ano_censo):
         logger.info(f"Get - Censo escolar por ano: {ano_censo}")
         try:
-            censosEscolares = []
-            conn = getConnection()
-            cursor = conn.cursor()
-            cursor.execute(
-                'SELECT * FROM censo_escolar WHERE ano_censo = %s', (ano_censo,))
-            resultSet = cursor.fetchall()
+            censos = db.session.execute(
+                db.select(CensoEscolar).filter_by(ano_censo=ano_censo)
+            ).scalars().all()
 
-            if not resultSet:
+            if not censos:
                 logger.warning(f"Censo escolar {ano_censo} não encontrado.")
                 return {"mensagem": "Censo escolar não encontrado."}, 404
             
-            for row in resultSet:
-                censoEscolar = CensoEscolar(
-                    ano_censo=row[0],
-                    estado=row[1],
-                    sigla=row[2],
-                    cod_estado=row[3],
-                    total_matriculas=row[4]
-                )
-                censosEscolares.append(censoEscolar)
+            logger.info(f"Censo escolar {ano_censo} retornado com sucesso")
+            return marshal(censos, censo_fields), 200
+        except SQLAlchemyError:
+            log_exception("Exception SQLAlchemy ao buscar censo escolar por ano.")
+            db.session.rollback()
+            abort(500, description="Problema com o banco de dados.")
+        except Exception:
+            log_exception("Erro inesperado ao buscar censo escolar por ano")
+            abort(500, description="Ocorreu um erro inesperado.")
 
-        except psycopg2.Error:
-            log_exception("Exception postgres")
-            return {"mensagem": "Problema com o banco de dados."}, 500
-        finally:
-            conn.close()
-
-        logger.info(f"Censo escolar {ano_censo} retornado com sucesso")
-        return marshal(censosEscolares, censo_fields), 200
 
 class CensoEscolarEstadoResource(Resource):
     def get(self, ano_censo, cod_estado):
         logger.info(f"Get - Censo escolar {ano_censo} por código estado: {cod_estado}")
         try:
-            conn = getConnection()
-            cursor = conn.cursor()
-            cursor.execute(
-                'SELECT * FROM censo_escolar WHERE ano_censo = %s and cod_estado = %s', (ano_censo, cod_estado,))
-            row = cursor.fetchone()
+            censo = db.session.execute(
+                db.select(CensoEscolar).filter_by(ano_censo=ano_censo, cod_estado=cod_estado)
+            ).scalar_one_or_none()
 
-            if row is None:
+            if censo is None:
                 logger.warning(f"Censo escolar {ano_censo} do estado {cod_estado} não encontrado.")
                 return {"mensagem": "Censo escolar não encontrado."}, 404
 
-            logger.info(row)
-            censoEscolar = CensoEscolar(
-                ano_censo=row[0],
-                estado=row[1],
-                sigla=row[2],
-                cod_estado=row[3],
-                total_matriculas=row[4]
-            )
+            logger.info(f"Censo escolar {ano_censo} do estado {cod_estado} retornado com sucesso")
+            return marshal(censo, censo_fields), 200
 
-        except psycopg2.Error as e:
-            log_exception("Exception postgres")
-            return {"mensagem": "Problema com o banco de dados."}, 500
-        finally:
-            conn.close()
-
-        logger.info(f"Censo escolar {ano_censo} do estado {cod_estado} retornado com sucesso")
-        return marshal(censoEscolar, censo_fields), 200
+        except SQLAlchemyError:
+            log_exception("Exception SQLAlchemy ao buscar censo escolar por estado.")
+            db.session.rollback()
+            abort(500, description="Problema com o banco de dados.")
+        except Exception:
+            log_exception("Erro inesperado ao buscar censo escolar por estado.")
+            abort(500, description="Ocorreu um erro inesperado.")

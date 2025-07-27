@@ -1,14 +1,14 @@
-from flask import request
+from flask import request, abort
 from flask_restful import Resource, marshal
 
-import psycopg2
 from marshmallow import ValidationError
+from sqlalchemy.exc import SQLAlchemyError
 
-from helpers.database import getConnection
-from helpers.logging import logger, log_exception
-from models.InstituicaoEnsino import instiuicao_fields
 
-from models.InstituicaoEnsino import InstituicaoEnsino, InstituicaoEnsinoSchema
+from helpers.database import db
+from helpers.logging import logger, log_exception 
+
+from models.Instituicao import instiuicao_fields, Instituicao, InstituicaoEnsinoSchema
 
 
 class InstituicoesResouce(Resource):
@@ -19,172 +19,134 @@ class InstituicoesResouce(Resource):
         per_page = int(request.args.get('per_page', 10))
 
         try:
-            instituicoesEnsino = []
-            cursor = getConnection().cursor()
+            instituicoes = db.session.execute(
+                db.select(Instituicao)
+                .offset((page - 1) * per_page)
+                .limit(per_page)
+            ).scalars().all()
 
-            # Calcular o offset para a consulta
-            offset = (page - 1) * per_page
+            logger.info("Instituições retornadas com sucesso")
+            return marshal(instituicoes, instiuicao_fields), 200
 
-            cursor.execute(
-                'SELECT * FROM tb_instituicao LIMIT %s OFFSET %s', (per_page, offset))
-            resultSet = cursor.fetchall()
-
-            for row in resultSet:
-                logger.info(row)
-                instituicaoEnsino = InstituicaoEnsino(
-                    ano_censo=row[0],
-                    regiao=row[1],
-                    cod_regiao=row[2],
-                    estado=row[3],
-                    sigla=row[4],
-                    cod_estado=row[5],
-                    municipio=row[6],
-                    cod_municipio=row[7],
-                    mesorregiao=row[8],
-                    microrregiao=row[9],
-                    entidade=row[10],
-                    cod_entidade=row[11],
-                    qt_mat_bas=row[12]
-                )
-                instituicoesEnsino.append(instituicaoEnsino)
-
-        except psycopg2.Error:
-            logger.error("Exception postgres")
-            return {"mensagem": "Problema com o banco de dados."}, 500
-
-        logger.info("Instituições retornadas com sucesso")
-        return marshal(instituicoesEnsino, instiuicao_fields), 200
+        except SQLAlchemyError:
+            log_exception("Exception SQLAlchemy ao listar instituições.")
+            db.session.rollback()
+            abort(500, description="Problema com o banco de dados.")
+        except Exception:
+            log_exception("Erro inesperado ao listar instituições")
+            abort(500, description="Ocorreu um erro inesperado.")
 
     def post(self):
         logger.info("Post - Instituição")
-        instituicaoEnsinoSchema = InstituicaoEnsinoSchema()
-        instituicaoData = request.get_json()
+        instituicao_schema = InstituicaoEnsinoSchema()
+        instituicao_data = request.get_json()
 
         try:
-            instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
-            conn = getConnection()
-            cursor = conn.cursor()
+            validated_data = instituicao_schema.load(instituicao_data)
+            nova_instituicao = Instituicao(**validated_data)
 
-            cursor.execute(
-                'INSERT INTO tb_instituicao (ano_censo, regiao, cod_regiao, estado, sigla, cod_estado, municipio, cod_municipio, mesorregiao, microrregiao, entidade, qt_mat_bas) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING cod_entidade',
-                (instituicaoJson['ano_censo'], instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'],
-                 instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'],
-                 instituicaoJson['microrregiao'], instituicaoJson['entidade'], instituicaoJson['qt_mat_bas'])
-            )
-            conn.commit()
+            db.session.add(nova_instituicao)
+            db.session.commit()
 
-            cod_entidade = cursor.fetchone()[0]
-            instituicaoEnsino = InstituicaoEnsino(
-                instituicaoJson['ano_censo'],
-                instituicaoJson['regiao'],
-                instituicaoJson['cod_regiao'],
-                instituicaoJson['estado'],
-                instituicaoJson['sigla'],
-                instituicaoJson['cod_estado'],
-                instituicaoJson['municipio'],
-                instituicaoJson['cod_municipio'],
-                instituicaoJson['mesorregiao'],
-                instituicaoJson['microrregiao'],
-                instituicaoJson['entidade'],
-                cod_entidade,
-                instituicaoJson['qt_mat_bas']
-            )
-            logger.info(f"Nova instituição com codigo {cod_entidade} cadastrada com sucesso")
-            return marshal(instituicaoEnsino, instiuicao_fields), 200
+            logger.info(f"Nova instituição com codigo {nova_instituicao.cod_entidade} cadastrada com sucesso")
+            return marshal(nova_instituicao, instiuicao_fields), 201
+        
         except ValidationError as err:
             logger.warning(f"Erro(s) na validação ao inserir nova instituição: \n\t{err.messages}")
             return {"mensagem": "Falha na validação dos dados. Verifique os campos e tente novamente.", "detalhes": err.messages}, 422
-        except psycopg2.Error:
-            log_exception("Exception sqlite")
-            return {"mensagem": "Problema com o banco de dados."}, 500
+        except SQLAlchemyError:
+            log_exception("Exception SQLAlchemy ao inserir nova instituição.")
+            db.session.rollback()
+            abort(500, description="Problema com o banco de dados.")
+        except Exception:
+            log_exception("Erro inesperado ao inserir nova instituição")
+            abort(500, description="Ocorreu um erro inesperado.")
 
 
 class InstituicaoResouce(Resource):
-    def get(self, cod_entidade):
-        logger.info(f"Get - Instituição por código de entidade: {cod_entidade}")
-        try:
-            conn = getConnection()
-            cursor = conn.cursor()
-            cursor.execute(
-                'SELECT * FROM tb_instituicao WHERE cod_entidade = %s', (cod_entidade,))
-            row = cursor.fetchone()
+    def get(self, ano_censo, cod_entidade):
+        logger.info(f"Get - Instituição por ano {ano_censo} e código de entidade: {cod_entidade}")
 
-            if row is None:
-                logger.warning(f"Instituição com código {cod_entidade} não encontrada.")
+        try:
+            instituicao = db.session.execute(
+                db.select(Instituicao)
+                .filter_by(ano_censo=ano_censo, cod_entidade=cod_entidade)
+            ).scalar_one_or_none()
+
+            if instituicao is None:
+                logger.warning(f"Instituição com ano {ano_censo} e código {cod_entidade} não encontrada.")
                 return {"mensagem": "Instituição não encontrada."}, 404
 
-            logger.info(row)
-            instituicaoEnsino = InstituicaoEnsino(
-                ano_censo=row[0],
-                regiao=row[1],
-                cod_regiao=row[2],
-                estado=row[3],
-                sigla=row[4],
-                cod_estado=row[5],
-                municipio=row[6],
-                cod_municipio=row[7],
-                mesorregiao=row[8],
-                microrregiao=row[9],
-                entidade=row[10],
-                cod_entidade=row[11],
-                qt_mat_bas=row[12]
-            )
+            logger.info(f"Instituição com ano {ano_censo} e codigo {cod_entidade} retornada com sucesso")            
+            return marshal(instituicao, instiuicao_fields), 200
 
-        except psycopg2.Error as e:
-            log_exception("Exception postgres")
-            return {"mensagem": "Problema com o banco de dados."}, 500
-        finally:
-            conn.close()
+        except SQLAlchemyError:
+            log_exception("Exception SQLAlchemy ao buscar instituição por ano e código.")
+            db.session.rollback()
+            abort(500, description="Problema com o banco de dados.")
+        except Exception:
+            log_exception("Erro inesperado ao buscar instituição")
+            abort(500, description="Ocorreu um erro inesperado.")
+        
+    def put(self, ano_censo, cod_entidade):
+        logger.info(f"Put - Tentativa de atualizar instituição com ano {ano_censo} e código: {cod_entidade}")
+        instituicao_schema = InstituicaoEnsinoSchema()
+        instituicao_data = request.get_json()
 
-        logger.info(f"Instituição com codigo {cod_entidade} retornada com sucesso")
-        return marshal(instituicaoEnsino, instiuicao_fields), 200
-
-    def put(self, cod_entidade):
-        logger.info(f"Put - Tentativa de atualizar instituição com código: {cod_entidade}")
         try:
-            conn = getConnection()
-            cursor = conn.cursor()
-            cursor.execute(
-                'SELECT * FROM tb_instituicao WHERE cod_entidade = %s', (cod_entidade,))
-            row = cursor.fetchone()
+            instituicao = db.session.execute(
+                db.select(Instituicao)
+                .filter_by(ano_censo=ano_censo, cod_entidade=cod_entidade)
+            ).scalar_one_or_none()
 
-            if row is None:
-                logger.warning(f"Instituição com código {cod_entidade} não encontrada para atualizar.") 
+            if instituicao is None:
+                logger.warning(f"Instituição com ano {ano_censo} e código {cod_entidade} não encontrada para atualizar.")
                 return {"mensagem": "Instituição não encontrada."}, 404
 
-            instituicaoEnsinoSchema = InstituicaoEnsinoSchema()
-            instituicaoData = request.get_json()
-            instituicaoJson = instituicaoEnsinoSchema.load(instituicaoData)
+            validated_data = instituicao_schema.load(instituicao_data, partial=True)
 
-            cursor.execute('UPDATE tb_instituicao SET ano_censo = %s, regiao = %s, cod_regiao = %s, estado = %s, sigla = %s, cod_estado = %s, municipio = %s, cod_municipio = %s, mesorregiao = %s, microrregiao = %s, entidade = %s, qt_mat_bas = %s WHERE cod_entidade = %s',
-                           (instituicaoJson['ano_censo'], instituicaoJson['regiao'], instituicaoJson['cod_regiao'], instituicaoJson['estado'], instituicaoJson['sigla'], instituicaoJson['cod_estado'],
-                            instituicaoJson['municipio'], instituicaoJson['cod_municipio'], instituicaoJson['mesorregiao'],
-                            instituicaoJson['microrregiao'], instituicaoJson['entidade'],
-                            instituicaoJson['qt_mat_bas'], cod_entidade))
-            conn.commit()
+            for key, value in validated_data.items():
+                setattr(instituicao, key, value)
+
+            db.session.commit()
+
+            logger.info(f"Instituição com ano {ano_censo} e código {cod_entidade} atualizada com sucesso.")
+            return {"mensagem": "Instituição atualizada com sucesso."}, 200
+        
         except ValidationError as err:
-            logger.warning(f"Erro de validação ao atualizar instituição com código: {cod_entidade}\n\t{err.messages}")
+            logger.warning(f"Erro de validação ao atualizar instituição com código {cod_entidade} do ano {ano_censo}\n\t{err.messages}")
             return {"mensagem": "Falha na validação dos dados. Verifique os campos e tente novamente.", "detalhes": err.messages}, 422
-        except psycopg2.Error:
-            log_exception("Exception postgres")
-            return {"mensagem": "Problema com o banco de dados."}, 500
+        except SQLAlchemyError:
+            log_exception("Exception SQLAlchemy ao atualizar instituição.")
+            db.session.rollback()
+            abort(500, description="Problema com o banco de dados.")
+        except Exception:
+            log_exception(f"Erro inesperado ao atualizar instituição")
+            abort(500, description="Ocorreu um erro inesperado.")
 
-        logger.info(f"Instituição com código {cod_entidade} atualizada com sucesso.")
-        return {"mensagem": "Instituição atualizada com sucesso."}, 200
-
-    def delete(self, cod_entidade):
+    def delete(self, ano_censo, cod_entidade):
         logger.info(f"Delete - Tentativa de deleção da instituição com código: {cod_entidade}")
+
         try:
-            conn = getConnection()
-            cursor = conn.cursor()
-            cursor.execute('DELETE FROM tb_instituicao WHERE cod_entidade = %s', (cod_entidade,))
-            conn.commit()
-            if cursor.rowcount == 0:
-                logger.warning(f"Instituição com código {cod_entidade} não encontrada para deleção.") 
+            instituicao = db.session.execute(
+                db.select(Instituicao)
+                .filter_by(ano_censo=ano_censo, cod_entidade=cod_entidade)
+            ).scalar_one_or_none()
+
+            if instituicao is None:
+                logger.warning(f"Instituição com ano {ano_censo} e código {cod_entidade} não encontrada para deleção.")
                 return {"mensagem": "Instituição não encontrada."}, 404
-            else:
-                logger.info(f"Instituição com código {cod_entidade} removida com sucesso.")
-                return {"mensagem": "Instituição removida com sucesso."}, 200
-        except psycopg2.Error:
-            log_exception("Exception postgres")
-            return {"mensagem": "Problema com o banco de dados."}, 500
+            
+            db.session.delete(instituicao)
+            db.session.commit()
+
+            logger.info(f"Instituição com ano {ano_censo} e código {cod_entidade} removida com sucesso.")
+            return {"mensagem": "Instituição removida com sucesso."}, 200
+        
+        except SQLAlchemyError:
+            log_exception("Exception SQLAlchemy ao deletar instituição.")
+            db.session.rollback()
+            abort(500, description="Problema com o banco de dados.")
+        except Exception:
+            log_exception("Erro inesperado ao deletar instituição")
+            abort(500, description="Ocorreu um erro inesperado.")
