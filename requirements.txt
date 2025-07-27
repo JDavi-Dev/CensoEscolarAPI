@@ -5,3 +5,5 @@ requests===2.32.3
 flask-cors==6.0.0
 Flask-RESTful==0.3.10
 psycopg2-binary==2.9.10
+SQLAlchemy==2.0.41
+Flask-SQLAlchemy==3.1.1
