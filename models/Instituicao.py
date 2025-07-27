@@ -1,7 +1,11 @@
+from datetime import datetime
+from helpers.database import db
+
+from sqlalchemy import ForeignKey, TIMESTAMP, ForeignKeyConstraint, text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from marshmallow import Schema, fields, validate, ValidationError
 from flask_restful import fields as flaskFields
-
-from datetime import datetime
 
 instiuicao_fields = {
     'ano_censo': flaskFields.Integer,
@@ -19,11 +23,41 @@ instiuicao_fields = {
     'qt_mat_bas': flaskFields.Integer
 }
 
+class Instituicao(db.Model):
+    __tablename__ = "tb_instituicao"
 
-class InstituicaoEnsino:
-    def __init__(self, ano_censo, regiao, cod_regiao, estado, sigla, cod_estado,
-                 municipio, cod_municipio, mesorregiao,
-                 microrregiao, entidade, cod_entidade, qt_mat_bas):
+    ano_censo: Mapped[int] = mapped_column(primary_key=True)
+    regiao: Mapped[str] = mapped_column()
+    cod_regiao: Mapped[int] = mapped_column()
+    estado: Mapped[str] = mapped_column()
+    sigla: Mapped[str] = mapped_column()
+    cod_estado: Mapped[int] = mapped_column(ForeignKey('tb_uf.cod_uf'))
+    municipio: Mapped[str] = mapped_column()
+    cod_municipio: Mapped[int] = mapped_column(ForeignKey('tb_municipio.cod_municipio'))
+    mesorregiao: Mapped[str] = mapped_column()
+    microrregiao: Mapped[str] = mapped_column()
+    entidade: Mapped[str] = mapped_column()
+    cod_entidade: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    qt_mat_bas: Mapped[int] = mapped_column()
+    created: Mapped[datetime] = mapped_column(TIMESTAMP, server_default=text('CURRENT_TIMESTAMP'))
+
+    uf = relationship('UF', back_populates='instituicoes')
+    municipios = relationship('Municipio', back_populates='instituicoes')
+
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ['mesorregiao', 'cod_estado'],
+            ['tb_mesorregiao.nome', 'tb_mesorregiao.cod_uf']
+        ),
+        ForeignKeyConstraint(
+            ['microrregiao', 'cod_estado'],
+            ['tb_microrregiao.nome', 'tb_microrregiao.cod_uf']
+        ),
+    )
+
+    def __init__(self, ano_censo: int, regiao: str, cod_regiao: int, estado: str, sigla: str, 
+                 cod_estado: int, municipio: str, cod_municipio: int, mesorregiao: str, 
+                 microrregiao: str, entidade: str, cod_entidade: int, qt_mat_bas: int):
         self.ano_censo = ano_censo
         self.regiao = regiao
         self.cod_regiao = cod_regiao
@@ -38,6 +72,13 @@ class InstituicaoEnsino:
         self.cod_entidade = cod_entidade
         self.qt_mat_bas = qt_mat_bas
 
+    def __repr__(self):
+        return (f"<Instituicao(ano_censo={self.ano_censo}, entidade='{self.entidade}', "
+                f"cod_entidade={self.cod_entidade}, municipio='{self.municipio}', "
+                f"qt_mat_bas={self.qt_mat_bas})>")
+
+    def __str__(self):
+        return f"{self.entidade} ({self.municipio}/{self.sigla}) - {self.qt_mat_bas} matrículas"
 
 class InstituicaoEnsinoSchema(Schema):
     ano_censo = fields.Int(
