@@ -55,23 +55,6 @@ class Instituicao(db.Model):
         ),
     )
 
-    def __init__(self, ano_censo: int, regiao: str, cod_regiao: int, estado: str, sigla: str, 
-                 cod_estado: int, municipio: str, cod_municipio: int, mesorregiao: str, 
-                 microrregiao: str, entidade: str, cod_entidade: int, qt_mat_bas: int):
-        self.ano_censo = ano_censo
-        self.regiao = regiao
-        self.cod_regiao = cod_regiao
-        self.estado = estado
-        self.sigla = sigla
-        self.cod_estado = cod_estado
-        self.municipio = municipio
-        self.cod_municipio = cod_municipio
-        self.mesorregiao = mesorregiao
-        self.microrregiao = microrregiao
-        self.entidade = entidade
-        self.cod_entidade = cod_entidade
-        self.qt_mat_bas = qt_mat_bas
-
     def __repr__(self):
         return (f"<Instituicao(ano_censo={self.ano_censo}, entidade='{self.entidade}', "
                 f"cod_entidade={self.cod_entidade}, municipio='{self.municipio}', "

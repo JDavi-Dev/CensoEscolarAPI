@@ -150,19 +150,19 @@ with app.app_context():
         inst_objects = []
         for inst in insts_json:
             inst_objects.append(Instituicao(
-                inst['ano_censo'],
-                inst['regiao'],
-                inst['cod_regiao'],
-                inst['estado'],
-                inst['sigla'],
-                inst['cod_estado'],
-                inst['municipio'],
-                inst['cod_municipio'],
-                inst['mesorregiao'],
-                inst['microrregiao'],
-                inst.get('entidade'),
-                inst.get('cod_entidade'),
-                inst.get('qt_mat_bas') or 0
+                ano_censo=inst['ano_censo'],
+                regiao=inst['regiao'],
+                cod_regiao=inst['cod_regiao'],
+                estado=inst['estado'],
+                sigla=inst['sigla'],
+                cod_estado=inst['cod_estado'],
+                municipio=inst['municipio'],
+                cod_municipio=inst['cod_municipio'],
+                mesorregiao=inst['mesorregiao'],
+                microrregiao=inst['microrregiao'],
+                entidade=inst.get('entidade'),
+                cod_entidade=inst.get('cod_entidade'),
+                qt_mat_bas=inst.get('qt_mat_bas') or 0
             ))
 
         for i in range(0, len(inst_objects), batch_size):
