@@ -12,8 +12,8 @@ from models.Instituicao import instiuicao_fields, Instituicao, InstituicaoEnsino
 
 
 class InstituicoesResouce(Resource):
-    def get(self):
-        logger.info("Get - Instituições")
+    def get(self, ano_censo):
+        logger.info("Get - Instituições por ano")
 
         page = int(request.args.get('page', 1))
         per_page = int(request.args.get('per_page', 10))
@@ -21,11 +21,12 @@ class InstituicoesResouce(Resource):
         try:
             instituicoes = db.session.execute(
                 db.select(Instituicao)
+                .filter_by(ano_censo=ano_censo)
                 .offset((page - 1) * per_page)
                 .limit(per_page)
             ).scalars().all()
 
-            logger.info("Instituições retornadas com sucesso")
+            logger.info(f"Instituições do ano {ano_censo} retornadas com sucesso")
             return marshal(instituicoes, instiuicao_fields), 200
 
         except SQLAlchemyError:
@@ -36,6 +37,7 @@ class InstituicoesResouce(Resource):
             log_exception("Erro inesperado ao listar instituições")
             abort(500, description="Ocorreu um erro inesperado.")
 
+class NovaInstituicaoResouce(Resource):
     def post(self):
         logger.info("Post - Instituição")
         instituicao_schema = InstituicaoEnsinoSchema()
