@@ -12,19 +12,10 @@ from models.Mesorregiao import Mesorregiao
 from models.Microrregiao import Microrregiao
 from models.Municipio import Municipio
 from models.Instituicao import Instituicao
-from models.CensoEscolar import CensoEscolar
-from datetime import datetime
 
 print("Iniciando a criação e população do banco de dados...")
 
 with app.app_context():
-    
-    print("Dropando todas as tabelas existentes (se houver)...")
-    db.drop_all()
-
-    print("Criando tabelas a partir dos modelos SQLAlchemy...")
-    db.create_all()
-
     # --- Inserção de dados ---
 
     # 2. Inserir UFs
