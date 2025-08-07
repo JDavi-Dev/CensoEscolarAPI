@@ -3,6 +3,15 @@ from helpers.database import db
 from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from flask_restful import fields
+
+microrregiao_fields = {
+    'cod_microrregiao': fields.Integer,
+    'nome': fields.String,
+    'cod_mesorregiao': fields.Integer,
+    'cod_uf': fields.Integer
+}
+
 class Microrregiao(db.Model):
     __tablename__ = "tb_microrregiao"
 

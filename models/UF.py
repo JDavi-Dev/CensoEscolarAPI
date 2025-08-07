@@ -2,6 +2,15 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from helpers.database import db
 
+from flask_restful import fields
+
+uf_fields = {
+    'cod_uf': fields.Integer,
+    'sigla': fields.String,
+    'nome': fields.String,
+    'regiao': fields.String
+}
+
 class UF(db.Model):
     __tablename__ = "tb_uf"
     

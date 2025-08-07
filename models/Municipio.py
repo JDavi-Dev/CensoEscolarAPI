@@ -3,6 +3,16 @@ from helpers.database import db
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from flask_restful import fields
+
+municipio_fields = {
+    'cod_municipio': fields.Integer,
+    'nome': fields.String,
+    'cod_microrregiao': fields.Integer,
+    'cod_mesorregiao': fields.Integer,
+    'cod_uf': fields.Integer
+}
+
 class Municipio(db.Model):
     __tablename__ = "tb_municipio"
 

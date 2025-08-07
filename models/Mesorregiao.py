@@ -3,6 +3,14 @@ from helpers.database import db
 from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from flask_restful import fields
+
+mesorregiao_fields = {
+    'cod_mesorregiao': fields.Integer,
+    'nome': fields.String,
+    'cod_uf': fields.Integer
+}
+
 class Mesorregiao(db.Model):
     __tablename__ = "tb_mesorregiao"
 
