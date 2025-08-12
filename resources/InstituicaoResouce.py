@@ -3,7 +3,7 @@ from flask_restful import Resource, marshal
 
 from marshmallow import ValidationError
 from sqlalchemy.exc import SQLAlchemyError
-
+from sqlalchemy import or_, cast, String
 
 from helpers.database import db
 from helpers.logging import logger, log_exception 
@@ -16,18 +16,67 @@ class InstituicoesResouce(Resource):
         logger.info("Get - Instituições por ano")
 
         page = int(request.args.get('page', 1))
-        per_page = int(request.args.get('per_page', 10))
+        per_page = int(request.args.get('per_page', 100))
+        cod_estado = request.args.get('cod_estado')
+        search_query = request.args.get('q', "").strip()
 
         try:
+            # Query base
+            query = db.select(Instituicao).filter_by(ano_censo=ano_censo)
+
+            count_query = db.select(db.func.count()).select_from(Instituicao).filter_by(ano_censo=ano_censo)
+
+            # Filtro por estado
+            if cod_estado:
+                query = query.filter_by(cod_estado=cod_estado)
+                count_query = count_query.filter_by(cod_estado=cod_estado)
+                logger.info(f"Filtrando instituições por ano {ano_censo} e estado {cod_estado}")
+
+            # Filtro por busca
+            if search_query:
+                logger.info(f"Aplicando filtro de busca: '{search_query}'")
+                like_pattern = f"%{search_query}%"
+                search_filter = or_(
+                    Instituicao.entidade.ilike(like_pattern),
+                    Instituicao.municipio.ilike(like_pattern),
+                    Instituicao.mesorregiao.ilike(like_pattern),
+                    Instituicao.microrregiao.ilike(like_pattern),
+                    Instituicao.regiao.ilike(like_pattern),
+                    cast(Instituicao.cod_entidade, String).ilike(like_pattern)
+                )
+                query = query.filter(search_filter)
+                count_query = count_query.filter(search_filter)
+
+                # Ordenar por relevância:
+                query = query.order_by(
+                    Instituicao.entidade.ilike(like_pattern).desc(),
+                    Instituicao.municipio.ilike(like_pattern).desc(),
+                    Instituicao.cod_entidade.asc()
+                )
+            else:
+                # Ordenação padrão sem busca
+                query = query.order_by(Instituicao.entidade.asc())
+
+            # Contagem total filtrada
+            total = db.session.execute(count_query).scalar()
+
             instituicoes = db.session.execute(
-                db.select(Instituicao)
+                query
                 .filter_by(ano_censo=ano_censo)
                 .offset((page - 1) * per_page)
                 .limit(per_page)
             ).scalars().all()
 
-            logger.info(f"Instituições do ano {ano_censo} retornadas com sucesso")
-            return marshal(instituicoes, instiuicao_fields), 200
+            if not instituicoes:
+                logger.warning(f"Nenhuma instituição encontrada para o ano {ano_censo} e estado {cod_estado if cod_estado else 'todos os estados'}.")
+                return {
+                    "mensagem": "Nenhuma instituição encontrada.",
+                    "instituicoes": [],
+                    "total": 0
+                }, 404
+
+            logger.info(f"Instituições do ano {ano_censo} (estado: {cod_estado if cod_estado else 'todos'}) retornadas com sucesso")
+            return { "instituicoes": marshal(instituicoes, instiuicao_fields), "total": total }, 200
 
         except SQLAlchemyError:
             log_exception("Exception SQLAlchemy ao listar instituições.")
