@@ -7,9 +7,10 @@ import {
 } from "react-simple-maps";
 import Formulario from "./Formulario";
 import { SunFill, MoonFill } from "react-bootstrap-icons";
-import { stateNameToCode } from "../constants/estados";
+import { stateNameToCode, stateNameToNumericCode } from "../constants/estados";
 import { fetchCensoData } from "../utils/fetchCenso";
 import { formatNumber } from "../utils/format";
+import TabelaInstituicoes from "./TabelaInstituicoes";
 
 const geoUrl =
   "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson";
@@ -55,6 +56,7 @@ const Mapa = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [theme, setTheme] = useState("light");
+  const [flagImage, setFlagImage] = useState(null);
 
   // Mapeamento de siglas para nomes completos
   const codeToStateName = useMemo(() => {
@@ -75,6 +77,33 @@ const Mapa = () => {
     };
     buscar();
   }, [filters]);
+
+  useEffect(() => {
+    const loadFlag = async () => {
+      const stateName = filters.estado;
+      if (stateName !== "Todos os estados") {
+        const stateCode = stateNameToNumericCode[stateName];
+        if (stateCode) {
+          try {
+            // Importação dinâmica com template literals
+            const module = await import(`../assets/bandeiras/${stateCode}.svg`);
+            setFlagImage(module.default);
+          } catch (error) {
+            console.error(
+              `Bandeira para o estado ${stateName} (${stateCode}) não encontrada.`,
+              error
+            );
+            setFlagImage(null);
+          }
+        } else {
+          setFlagImage(null);
+        }
+      } else {
+        setFlagImage(null);
+      }
+    };
+    loadFlag();
+  }, [filters.estado]);
 
   const handleFilterChange = (newFilters) => {
     setFilters((prevFilters) => ({
@@ -255,8 +284,18 @@ const Mapa = () => {
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               margin: "20px auto",
               maxWidth: "80%",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
+            {flagImage && (
+              <img
+                src={flagImage}
+                alt={`Bandeira do ${filters.estado}`}
+                style={{ width: "40px", height: "auto", }}
+              />
+            )}
             {`${filters.estado} (${filters.ano}) - Matrículas: ${formatNumber(
               censoData[0]?.total_matriculas
             )}`}
@@ -466,6 +505,11 @@ const Mapa = () => {
           </div>
         </div>
       </div>
+      <TabelaInstituicoes 
+        estado={filters.estado} 
+        ano={filters.ano} 
+        theme={theme} 
+      />
     </div>
   );
 };
