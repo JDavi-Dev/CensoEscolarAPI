@@ -1,4 +1,5 @@
 import json
+import gzip
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import text
 
@@ -16,85 +17,86 @@ from models.Instituicao import Instituicao
 print("Iniciando a criação e população do banco de dados...")
 
 with app.app_context():
-    # --- Inserção de dados ---
+    try:
+        if db.session.query(UF).first() is not None:
+            print("==> O banco de dados já contém dados (persistidos via volume).")
+            print("==> Pulando a fase de população de dados.")
+            exit(0) # Sai com sucesso sem rodar o resto
+    except Exception as e:
+        print(f"Buscando estrutura de tabelas... (Erro esperado se banco estiver vazio: {e})")
 
-    # 2. Inserir UFs
+    # --- Inserção de dados ---
+    def load_minified(path):
+        open_func = gzip.open if path.endswith(".gz") else open
+
+        with open_func(path, "rt", encoding="utf-8") as f:
+            content = json.load(f)
+
+        cols = content["columns"]
+        return [dict(zip(cols, row)) for row in content["data"]]
+
+    # 1. Inserir UFs
     print("Populando tabela tb_uf...")
-    with open("data/ufs_brasil.json", "r", encoding="utf-8") as f:
-        ufs_data = json.load(f)
-    ufs_to_add = []
-    for uf_item in ufs_data:
-        uf_obj = UF(
-            uf_item['cod_uf'],
-            uf_item['sigla'],
-            uf_item['nome'],
-            uf_item['regiao']
-        )
-        ufs_to_add.append(uf_obj)
+    ufs_data = load_minified("data/ufs.json.gz")
+    ufs_to_add = [
+        UF(uf_item["cod_uf"], uf_item["sigla"], uf_item["nome"], uf_item["regiao"])
+        for uf_item in ufs_data
+    ]
     db.session.bulk_save_objects(ufs_to_add)
     db.session.commit()
     print(f"Inseridos {len(ufs_to_add)} UFs.")
 
-    # 3. Inserir Mesorregiões
+    # 2. Inserir Mesorregiões
     print("Populando tabela tb_mesorregiao...")
-    with open("data/mesorregioes_brasil.json", "r", encoding="utf-8") as f:
-        mesor_data = json.load(f)
-    mesor_to_add = []
-    for m_item in mesor_data:
-        mesor_obj = Mesorregiao(
-            m_item['cod_mesorregiao'],
-            m_item['nome'],
-            m_item['UF']['id']
-        )
-        mesor_to_add.append(mesor_obj)
+    mesor_data = load_minified("data/mesorregioes.json.gz")
+    mesor_to_add = [
+        Mesorregiao(m_item["cod_mesorregiao"], m_item["nome"], m_item["cod_uf"])
+        for m_item in mesor_data
+    ]
     db.session.bulk_save_objects(mesor_to_add)
     db.session.commit()
     print(f"Inseridas {len(mesor_to_add)} Mesorregiões.")
 
-    # 4. Inserir Microrregiões
+    # 3. Inserir Microrregiões
     print("Populando tabela tb_microrregiao...")
-    with open("data/microrregioes_brasil.json", "r", encoding="utf-8") as f: #
-        micros_data = json.load(f)
-    micros_to_add = []
-    for micro_item in micros_data:
-        micror_obj = Microrregiao(
-            micro_item['cod_microrregiao'],
-            micro_item['nome'],
-            micro_item['mesorregiao']['id'],
-            micro_item['mesorregiao']['UF']['id']
+    micros_data = load_minified("data/microrregioes.json.gz")
+    micros_to_add = [
+        Microrregiao(
+            micro_item["cod_microrregiao"],
+            micro_item["nome"],
+            micro_item["cod_mesorregiao"],
+            micro_item["cod_uf"]
         )
-        micros_to_add.append(micror_obj)
+        for micro_item in micros_data
+    ]
     db.session.bulk_save_objects(micros_to_add)
     db.session.commit()
     print(f"Inseridas {len(micros_to_add)} Microrregiões.")
 
-    # 5. Inserir Municípios
+    # 4. Inserir Municípios
     print("Populando tabela tb_municipio...")
-    with open("data/municipios_brasil.json", "r", encoding="utf-8") as f:
-        munis_data = json.load(f)
+    munis_data = load_minified("data/municipios.json.gz")
     
     muni_to_add = []
     skipped_munis = 0
-    for mun_item in munis_data:
-        microrregiao = mun_item.get('microrregiao') 
-        mesorregiao = microrregiao.get('mesorregiao')
-
-        muni_obj = Municipio(
-            mun_item['cod_municipio'],
-            mun_item['nome'],
-            microrregiao['id'],
-            mesorregiao['id'],
-            mesorregiao['UF']['id']
+    muni_to_add = [
+        Municipio(
+            mun_item["cod_municipio"],
+            mun_item["nome"],
+            mun_item["cod_microrregiao"],
+            mun_item["cod_mesorregiao"],
+            mun_item["cod_uf"]
         )
-        muni_to_add.append(muni_obj)
+        for mun_item in munis_data
+    ]
     
     # Inserção em massa de municípios
     db.session.bulk_save_objects(muni_to_add)
     db.session.commit()
     print(f"Inseridos {len(muni_to_add)} municípios. {skipped_munis} municípios pulados.")    
 
-    # 6. Inserir Instituições - OTIMIZADO (Métodos 1, 2 e 3)
-    censo_files = ["data/censo_escolar_2023.json", "data/censo_escolar_2024.json"]
+    # 5. Inserir Instituições - OTIMIZADO (Métodos 1, 2 e 3)
+    censo_files = ["data/censo_escolar_2023.json.gz", "data/censo_escolar_2024.json.gz"]
 
     # Método 1: Desativar índices/constraints antes da inserção
     try:
@@ -132,29 +134,27 @@ with app.app_context():
     batch_size = 10000
     total_inst = 0
 
-    for censo_file in censo_files:
-        print(f"Processando arquivo: {censo_file}")
+    for file in censo_files:
+        insts_json = load_minified(file)
 
-        with open(censo_file, "r", encoding="utf-8") as f:
-            insts_json = json.load(f)
-
-        inst_objects = []
-        for inst in insts_json:
-            inst_objects.append(Instituicao(
-                ano_censo=inst['ano_censo'],
-                regiao=inst['regiao'],
-                cod_regiao=inst['cod_regiao'],
-                estado=inst['estado'],
-                sigla=inst['sigla'],
-                cod_estado=inst['cod_estado'],
-                municipio=inst['municipio'],
-                cod_municipio=inst['cod_municipio'],
-                mesorregiao=inst['mesorregiao'],
-                microrregiao=inst['microrregiao'],
-                entidade=inst.get('entidade'),
-                cod_entidade=inst.get('cod_entidade'),
-                qt_mat_bas=inst.get('qt_mat_bas') or 0
-            ))
+        inst_objects = [
+            Instituicao(
+                ano_censo=inst["ano_censo"],
+                regiao=inst["regiao"],
+                cod_regiao=inst["cod_regiao"],
+                estado=inst["estado"],
+                sigla=inst["sigla"],
+                cod_estado=inst["cod_estado"],
+                municipio=inst["municipio"],
+                cod_municipio=inst["cod_municipio"],
+                mesorregiao=inst["mesorregiao"],
+                microrregiao=inst["microrregiao"],
+                entidade=inst.get("entidade"),
+                cod_entidade=inst.get("cod_entidade"),
+                qt_mat_bas=inst.get("qt_mat_bas", 0)
+            )
+            for inst in insts_json
+        ]
 
         for i in range(0, len(inst_objects), batch_size):
             chunk = inst_objects[i:i + batch_size]
@@ -205,7 +205,7 @@ with app.app_context():
     db.session.execute(text("SELECT setval('public.tb_instituicao_cod_entidade_seq', (SELECT MAX(cod_entidade) FROM tb_instituicao))"))
     db.session.commit()
 
-    # 7. Inserir dados consolidados na tabela censo_escolar
+    # 6. Inserir dados consolidados na tabela censo_escolar
     print("Populando tabela censo_escolar com dados consolidados...")
 
     try:
