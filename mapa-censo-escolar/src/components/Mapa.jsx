@@ -11,9 +11,7 @@ import { stateNameToCode, stateNameToNumericCode } from "../constants/estados";
 import { fetchCensoData } from "../utils/fetchCenso";
 import { formatNumber } from "../utils/format";
 import TabelaInstituicoes from "./TabelaInstituicoes";
-
-const geoUrl =
-  "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson";
+import brazilGeoJson from "../assets/data/brazil-states.json";
 
 const stateMarkers = [
   { name: "AC", coordinates: [-70.268555, -9.18887] },
@@ -325,7 +323,7 @@ const Mapa = () => {
           }}
           style={{ width: "100%", height: "auto" }}
         >
-          <Geographies geography={geoUrl}>
+          <Geographies geography={brazilGeoJson}>
             {({ geographies }) =>
               geographies.map((geo) => {
                 const stateName = geo.properties.name;
