@@ -1,0 +1,62 @@
+services:
+  # --- POSTGRESQL (Banco de Dados) ---
+  db:
+    container_name: censo-banco
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=censoescolar
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rede-censo
+    restart: always
+    # Healthcheck: Garante que o banco aceita conexões
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  
+  # --- API Flask (API Restful do Backend) ---
+  api:
+    container_name: censo-api
+    build:
+      context: .
+    ports:
+      - "5000:5000"
+    networks:
+      - rede-censo
+    depends_on:
+      db:
+        condition: service_healthy # Espera o DB estar pronto
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+  
+  front:
+    container_name: censo-front
+    build:
+      context: ./mapa-censo-escolar
+    ports:
+      - "3000:80"
+    networks:
+      - rede-censo
+    depends_on:
+      db:
+        condition: service_healthy # Espera o DB estar pronto
+      api:
+        condition: service_healthy # Espera API estar pronta
+
+volumes:
+  postgres_data:
+
+networks:
+  rede-censo:
+    driver: bridge
